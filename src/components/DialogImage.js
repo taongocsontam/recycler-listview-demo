@@ -33,6 +33,7 @@ function DialogImage(props) {
           <View>
             <Image style={styles.image} source={{ uri: imageUrl }} />
             <Text> `index: ${indexImage}`</Text>
+            <Text> `index: ${indexImage}`</Text>
           </View>
         </ModalContent>
       </Modal>

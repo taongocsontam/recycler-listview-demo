@@ -6,31 +6,34 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useEffect } from "react";
 import {
   ActivityIndicator,
   RefreshControl,
   StyleSheet,
   Text,
   View,
-} from 'react-native';
-import {RecyclerListView, DataProvider} from 'recyclerlistview';
-import DialogImage from './src/components/DialogImage';
-import ImageRender from './src/components/ImageRender';
-import ViewSelector from './src/components/ViewSelector';
-import {getData} from './src/until/DataUntil';
-import {GetLayoutProvider} from './src/until/LayoutUntil';
-import {ModalPortal} from 'react-native-modals';
+} from "react-native";
+import { RecyclerListView, DataProvider } from "recyclerlistview";
+import ImageRender from "./src/components/ImageRender";
+import ViewSelector from "./src/components/ViewSelector";
+import { getData } from "./src/until/DataUntil";
+import { GetLayoutProvider } from "./src/until/LayoutUntil";
+import { ModalPortal } from "react-native-modals";
+import { useDispatch, useSelector } from "react-redux";
+// import { updateLoading } from "./src/redux/actions";
 
 function App() {
+  const dispatch = useDispatch();
+  const {} = useSelector((state) => state.I);
   const [dataProvider, setDataProvider] = React.useState(
     new DataProvider((r1, r2) => {
       return r1 != r2;
-    }),
+    })
   );
 
   const [layoutProvider, setLayoutProvider] = React.useState(
-    GetLayoutProvider(0),
+    GetLayoutProvider(0)
   );
   const [images, setImages] = React.useState([]);
   const [count, setCount] = React.useState(0);
@@ -40,16 +43,18 @@ function App() {
   React.useEffect(() => {
     fetchMoreData();
   }, []);
-
+  
   const fetchMoreData = async () => {
+    // dispatch(updateLoading(true));
     const image = await getData(count, 20);
+    // dispatch(updateLoading(false));
     setDataProvider(dataProvider.cloneWithRows(images.concat(image)));
     setImages(images.concat(image));
     setCount(count + 20);
   };
 
   // Click item image.
-  const handlerClickImage = indexImage => {
+  const handlerClickImage = (indexImage) => {
     //todo.
   };
 
@@ -58,14 +63,14 @@ function App() {
       <ImageRender
         imageUrl={data}
         indexImage={index}
-        handlerOnClick={indexImage => {
+        handlerOnClick={(indexImage) => {
           handlerClickImage(indexImage);
         }}
       />
     );
   };
 
-  const viewChangehanlder = viewType => {
+  const viewChangehanlder = (viewType) => {
     setLayoutProvider(GetLayoutProvider(viewType));
     setViewType(viewType);
   };
@@ -77,7 +82,7 @@ function App() {
 
   const renderFooter = () => {
     return (
-      <ActivityIndicator style={{margin: 10}} size="large" color={'black'} />
+      <ActivityIndicator style={{ margin: 10 }} size="large" color={"black"} />
     );
   };
 
@@ -85,14 +90,14 @@ function App() {
     <View style={styles.container}>
       <ViewSelector
         viewType={viewType}
-        viewChange={viewType => {
+        viewChange={(viewType) => {
           viewChangehanlder(viewType);
         }}
       />
       {count > 0 ? (
         <RecyclerListView
           style={styles.recyclerView}
-          contentContainerStyle={{margin: 3}}
+          contentContainerStyle={{ margin: 3 }}
           onEndReached={handleListEnd}
           dataProvider={dataProvider}
           layoutProvider={layoutProvider}

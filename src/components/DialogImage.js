@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, Dimensions, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  Dimensions,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { Modal, ModalContent, ScaleAnimation } from "react-native-modals";
 
 let screenWidth = Dimensions.get("window").width;
@@ -26,7 +33,7 @@ function areEqual(prevProps, nextProps) {
   return prevProps.isModalVisible === nextProps.isModalVisible;
 }
 function DialogImage(props) {
-  const { isModalVisible, imageUrl, indexImage } = props;
+  const { isModalVisible, imageUrl, indexImage, hideDialogImage } = props;
 
   React.useLayoutEffect(() => {}, []);
 
@@ -72,13 +79,22 @@ function DialogImage(props) {
           })
         }
       >
-        <ModalContent style={styles.modalCenter}>
-          <RenderHeaderModal />
-          <View>
-            <Image style={styles.image} source={{ uri: imageUrl }} />
-          </View>
-          <RenderModalFooter />
-        </ModalContent>
+        <TouchableOpacity
+          onPress={() => {
+            hideDialogImage();
+          }}
+          style={{
+            backgroundColor: "red",
+          }}
+        >
+          <ModalContent style={styles.modalCenter}>
+            <RenderHeaderModal />
+            <View>
+              <Image style={styles.image} source={{ uri: imageUrl }} />
+            </View>
+            <RenderModalFooter />
+          </ModalContent>
+        </TouchableOpacity>
       </Modal>
     </View>
   );

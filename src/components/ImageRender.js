@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Image,
   StyleSheet,
@@ -6,22 +6,22 @@ import {
   View,
   TouchableOpacity,
   Pressable,
-} from 'react-native';
-import DialogImage from './DialogImage';
+} from "react-native";
+import DialogImage from "./DialogImage";
 
 function areEqual(prevProps, nextProps) {
   return prevProps.imageUrl === nextProps.imageUrl; //change when false.
 }
 
 function ImageRender(props) {
-  const {imageUrl, indexImage, handlerOnClick} = props;
+  const { imageUrl, indexImage, handlerOnClick } = props;
 
   const imageRef = React.useRef(null);
   const [showImageItem, setShowImageItem] = React.useState(false);
   const [index, setIndex] = React.useState();
 
   React.useEffect(() => {
-    if (Platform.OS === 'ios' && imageRef) {
+    if (Platform.OS === "ios" && imageRef) {
       // imageRef;
       imageRef.current.setNativeProps({
         opacity: 0,
@@ -30,7 +30,7 @@ function ImageRender(props) {
   }, []);
 
   const handleOnLoad = () => {
-    if (Platform.OS === 'ios' && imageRef) {
+    if (Platform.OS === "ios" && imageRef) {
       // imageRef;
       imageRef.current.setNativeProps({
         opacity: 1,
@@ -39,7 +39,13 @@ function ImageRender(props) {
   };
 
   const handlerOnClickItem = () => {
+    console.log("Click One");
     handlerOnClick(indexImage);
+    setShowImageItem(true);
+  };
+  const hideDialogImage = () => {
+    console.log("hide dialog", JSON.stringify());
+    setShowImageItem(false);
   };
 
   return (
@@ -50,23 +56,27 @@ function ImageRender(props) {
         onLongPress={() => {
           setIndex(indexImage);
           setShowImageItem(true);
+          console.log("onLongPress");
         }}
         onPressOut={() => {
           setShowImageItem(false);
-        }}>
+          console.log("onPressOut");
+        }}
+      >
         <Image
-          ref={ref => {
+          ref={(ref) => {
             imageRef.current = ref;
           }}
           style={styles.image}
           onLoad={handleOnLoad}
-          source={{uri: imageUrl}}
+          source={{ uri: imageUrl }}
         />
       </Pressable>
       <DialogImage
         isModalVisible={showImageItem}
         imageUrl={imageUrl}
         indexImage={index}
+        hideDialogImage={hideDialogImage}
       />
     </>
   );
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
   viewImage: {
     flex: 1,
     margin: 3,
-    backgroundColor: 'lightgrey',
+    backgroundColor: "lightgrey",
   },
   image: {
     flex: 1,

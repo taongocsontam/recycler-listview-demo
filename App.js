@@ -21,11 +21,12 @@ import { getData } from "./src/until/DataUntil";
 import { GetLayoutProvider } from "./src/until/LayoutUntil";
 import { ModalPortal } from "react-native-modals";
 import { useDispatch, useSelector } from "react-redux";
-// import { updateLoading } from "./src/redux/actions";
+import { updateLoading } from "./src/redux/actions";
 
 function App() {
   const dispatch = useDispatch();
-  const {} = useSelector((state) => state.I);
+  const { isLoading } = useSelector((state) => state);
+  console.log("isLoading: ", JSON.stringify(isLoading));
   const [dataProvider, setDataProvider] = React.useState(
     new DataProvider((r1, r2) => {
       return r1 != r2;
@@ -43,11 +44,10 @@ function App() {
   React.useEffect(() => {
     fetchMoreData();
   }, []);
-  
+
   const fetchMoreData = async () => {
-    // dispatch(updateLoading(true));
+    dispatch(updateLoading(true));
     const image = await getData(count, 20);
-    // dispatch(updateLoading(false));
     setDataProvider(dataProvider.cloneWithRows(images.concat(image)));
     setImages(images.concat(image));
     setCount(count + 20);

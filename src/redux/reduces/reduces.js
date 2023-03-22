@@ -11,8 +11,7 @@ const initialState = {
   images: [],
 };
 
-const ImageReduces = (state = initialState, actions) => {
+export default function ImageReduces(state = initialState, actions) {
+  console.log("action: ", JSON.stringify(actions));
   return state;
-};
-
-export default ImageReduces;
+}

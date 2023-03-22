@@ -17,7 +17,8 @@ function* getImageSaga(action) {
 }
 
 function* mySaga() {
-  yield takeEvery(GET_IMAGE, getImageSaga);
+  // yield takeEvery(GET_IMAGE, getImageSaga);
+  console.log("My saga run");
 }
 
 export default mySaga;

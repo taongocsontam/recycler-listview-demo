@@ -1,10 +1,9 @@
 import { combineReducers } from "redux";
-import produce from "immer";
 
 import ImageReduces from "./reduces";
 
 const appReduces = combineReducers({
-  ImageReduces,
+  imageReduces: ImageReduces,
 });
 
 const rootReducer = () => {

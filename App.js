@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useEffect } from "react";
 import {
   ActivityIndicator,
@@ -26,7 +18,7 @@ import { updateLoading } from "./src/redux/actions";
 function App() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state);
-  console.log("isLoading: ", JSON.stringify(isLoading));
+  // console.log("isLoading: ", JSON.stringify(isLoading)); 
   const [dataProvider, setDataProvider] = React.useState(
     new DataProvider((r1, r2) => {
       return r1 != r2;

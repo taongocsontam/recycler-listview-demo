@@ -4,7 +4,6 @@ import {
   GET_IMAGE_SUCCESS,
   GET_IMAGE_ERROR,
 } from "../actions/types";
-import { updateLoading } from "../actions/index";
 
 const initialState = {
   isLoading: false,
@@ -13,5 +12,15 @@ const initialState = {
 
 export default function ImageReduces(state = initialState, actions) {
   console.log("action: ", JSON.stringify(actions));
+  // switch (actions.type) {
+  //   case UPDATE_LOADING:
+  //     state = { ...state, isLoading: actions.payload };
+  //     break;
+
+  //   default:
+  //     state = { ...state };
+  //     break;
+  // }
+
   return state;
 }

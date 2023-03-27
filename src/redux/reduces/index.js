@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
+import counterReducers from "./counterReducer";
 
-import ImageReduces from "./reduces";
+import imageReduces from "./imageReduces";
+import loadingReduces from "./loadingReduces";
 
-const appReduces = combineReducers({
-  imageReduces: ImageReduces,
+const rootReducer = combineReducers({
+  imageReduces: imageReduces,
+  loadingReduces: loadingReduces,
+  counterReduces: counterReducers,
 });
-
-const rootReducer = () => {
-  return appReduces();
-};
 
 export default rootReducer;

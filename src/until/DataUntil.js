@@ -9,7 +9,7 @@ export async function getData(start, count) {
 
   const filteredData = fullData.slice(
     start,
-    Math.min(fullData.length, start + count),
+    Math.min(fullData.length, start + count)
   );
 
   return filteredData;

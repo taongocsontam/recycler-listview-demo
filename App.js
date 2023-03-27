@@ -13,12 +13,14 @@ import { getData } from "./src/until/DataUntil";
 import { GetLayoutProvider } from "./src/until/LayoutUntil";
 import { ModalPortal } from "react-native-modals";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLoading } from "./src/redux/actions";
+import { getDataImage, updateLoading } from "./src/redux/actions";
+import LoadingIndicator from "./src/components/LoadingIndicator";
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state);
-  // console.log("isLoading: ", JSON.stringify(isLoading)); 
+  const isLoading = useSelector((state) => state.loadingReduces.isloading);
+  const response = useSelector((state) => state.imageReduces.images);
+
   const [dataProvider, setDataProvider] = React.useState(
     new DataProvider((r1, r2) => {
       return r1 != r2;
@@ -39,10 +41,13 @@ function App() {
 
   const fetchMoreData = async () => {
     dispatch(updateLoading(true));
-    const image = await getData(count, 20);
-    setDataProvider(dataProvider.cloneWithRows(images.concat(image)));
-    setImages(images.concat(image));
+    dispatch(getDataImage(count, 20));
+
+    // const image = await getData(count, 20);
+    setDataProvider(dataProvider.cloneWithRows(images.concat(response)));
+    setImages(images.concat(response));
     setCount(count + 20);
+    dispatch(updateLoading(false));
   };
 
   // Click item image.
@@ -112,6 +117,7 @@ function App() {
         />
       ) : null}
       <ModalPortal />
+      {isLoading && <LoadingIndicator />}
     </View>
   );
 }

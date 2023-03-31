@@ -79,22 +79,13 @@ function DialogImage(props) {
           })
         }
       >
-        <TouchableOpacity
-          onPress={() => {
-            hideDialogImage();
-          }}
-          style={{
-            backgroundColor: "red",
-          }}
-        >
-          <ModalContent style={styles.modalCenter}>
-            <RenderHeaderModal />
-            <View>
-              <Image style={styles.image} source={{ uri: imageUrl }} />
-            </View>
-            <RenderModalFooter />
-          </ModalContent>
-        </TouchableOpacity>
+        <ModalContent style={styles.modalCenter}>
+          <RenderHeaderModal />
+          <View>
+            <Image style={styles.image} source={{ uri: imageUrl }} />
+          </View>
+          <RenderModalFooter />
+        </ModalContent>
       </Modal>
     </View>
   );

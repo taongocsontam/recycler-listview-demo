@@ -10,7 +10,6 @@ const inittialState = {
   messageError: "",
 };
 const appReduces = (state = inittialState, actions) => {
-  console.log("actions:   ", JSON.stringify(actions));
   switch (actions.type) {
     case UPDATE_LOADING:
       return { ...state, isLoading: actions.payload };

@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   imageReduces: imageReduces,
   loadingReduces: loadingReduces,
   counterReduces: counterReducers,
-  appReduces: appReduces,
+  // appReduces: appReduces,
 });
 
 export default rootReducer;

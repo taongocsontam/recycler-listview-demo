@@ -8,8 +8,11 @@ MERGED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/main/
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/0ae1dcc98161cd7687088e7c218bafb5/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/a87d4fe3abcfff9cf8121e97246e8460/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/c58f9bee4ce57c13fb82d93cd7fea6a8/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
+MERGED from [:react-native-device-info] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-device-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-gesture-handler] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-svg] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.68.0] /Users/beetsoft/.gradle/caches/transforms-3/8af0314cca28edbd3fe04d3ba5b65ce2/transformed/jetified-react-native-0.68.0/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/07bf552862a9cc680da52cf0905bf89b/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [org.webkit:android-jsc:r250230] /Users/beetsoft/.gradle/caches/transforms-3/d6795c61b51d0b6b240b976a2afebc9a/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:2:1-11:12
@@ -37,22 +40,28 @@ MERGED from [com.facebook.fresco:ui-common:2.6.0] /Users/beetsoft/.gradle/caches
 MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/beetsoft/.gradle/caches/transforms-3/92ebce279d4132c476cc39e8b8bf1f04/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/b2a7938ed2181708c929b1d757b5dad1/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/fe674064534f06d4cfc58a9c7b553920/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/6291e8f5bf482c0828a23094a42e32c7/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/a99c6d1110fcce2f7f123354dc4bcb64/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core-ktx:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/0a9ae6349b90f76aa9ab49ac792d53d8/transformed/jetified-core-ktx-1.5.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/32a4a5948f8cc79fe25cf6cce8916fb8/transformed/jetified-play-services-stats-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/a5546a34100892003783fb6617f67557/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b4dab32ffd285e2340b36e5b321d36f3/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/beetsoft/.gradle/caches/transforms-3/1ef9baf1ae5e5bdae753a5680c1ff1b6/transformed/fragment-1.3.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/89802274d45f6ebc56cc6c6829242d39/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.2.3] /Users/beetsoft/.gradle/caches/transforms-3/aa8c56f07525e4712fde600c47dbfa62/transformed/jetified-activity-1.2.3/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/53650c10d09de60540337e7593425524/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/0fec66ada0145ab60cc8e3ea5cadcd9c/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cd5d9722bb7da90a73fe9f7006aaf46d/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/964eb5e358f3b51669daafb8a959fa14/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/841667ad70d7084504d4f0de86c922ae/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/0006b15a6d8e61a6b126b77f51184a75/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.2.0] /Users/beetsoft/.gradle/caches/transforms-3/d87d5c0deb14b3f33fcb1a8cb2d3d5bc/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cea9b43bbb896312fbf0aba9c810cad9/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/0d6071d0631b5e9981c68e4ae913658b/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/c39935c1e5d58e1cc668a5957564e859/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/89802274d45f6ebc56cc6c6829242d39/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/0fec66ada0145ab60cc8e3ea5cadcd9c/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cd5d9722bb7da90a73fe9f7006aaf46d/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/9489742adf5f39c6c1a108a4f6623a97/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/ce20a6056038dd2122a4cf97c3957314/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/beetsoft/.gradle/caches/transforms-3/67651a005d25a9a94b5e4eefdcef2381/transformed/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
@@ -62,8 +71,12 @@ MERGED from [androidx.tracing:tracing:1.0.0] /Users/beetsoft/.gradle/caches/tran
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/beetsoft/.gradle/caches/transforms-3/de59bf7ca9ff58d18b20b781d8ad6eb5/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/3d2349027110dad689ff7d8883400e65/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/beetsoft/.gradle/caches/transforms-3/e3e50f0b896fa1ae83208d282e04334a/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/e72dbad2e969053da7ba3a03495cd9f9/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/025cad7a70d968458776b6b6ce077b4a/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/ca5886f685b61597ebc3e7bcb875f488/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:2:1-13:12
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/beetsoft/.gradle/caches/transforms-3/936769f7c9becfbee1183a7c54056845/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/8779ecd7d3070371f32f4db8d4c71252/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/aa2b71bb8c6d30d38347b2be8555c33b/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
 INJECTED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 INJECTED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 INJECTED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/debug/AndroidManifest.xml:2:1-13:12
@@ -88,6 +101,8 @@ uses-permission#android.permission.INTERNET
 ADDED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/main/AndroidManifest.xml:4:5-67
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/0ae1dcc98161cd7687088e7c218bafb5/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/0ae1dcc98161cd7687088e7c218bafb5/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:24:5-67
 	android:name
 		ADDED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/main/AndroidManifest.xml:4:22-64
 application
@@ -100,12 +115,24 @@ MERGED from [com.facebook.soloader:soloader:0.10.3] /Users/beetsoft/.gradle/cach
 MERGED from [com.facebook.soloader:soloader:0.10.3] /Users/beetsoft/.gradle/caches/transforms-3/12b67fc2a313d0c732eb762e67a660ae/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:11:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/642b48cb1dfdf9b860a69904edafb68f/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/642b48cb1dfdf9b860a69904edafb68f/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
-MERGED from [androidx.core:core:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/32a4a5948f8cc79fe25cf6cce8916fb8/transformed/jetified-play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/32a4a5948f8cc79fe25cf6cce8916fb8/transformed/jetified-play-services-stats-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/a5546a34100892003783fb6617f67557/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/a5546a34100892003783fb6617f67557/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/beetsoft/.gradle/caches/transforms-3/c2f709a75b6d06e2093dfa1c49b7eb2a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/beetsoft/.gradle/caches/transforms-3/c2f709a75b6d06e2093dfa1c49b7eb2a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:11:5-20
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:11:5-20
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/main/AndroidManifest.xml:8:7-39
 		ADDED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/main/AndroidManifest.xml:8:7-39
@@ -164,10 +191,16 @@ MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/beetsof
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/a87d4fe3abcfff9cf8121e97246e8460/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/c58f9bee4ce57c13fb82d93cd7fea6a8/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/c58f9bee4ce57c13fb82d93cd7fea6a8/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [:react-native-device-info] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-device-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-device-info] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-device-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-safe-area-context] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.0] /Users/beetsoft/.gradle/caches/transforms-3/8af0314cca28edbd3fe04d3ba5b65ce2/transformed/jetified-react-native-0.68.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.0] /Users/beetsoft/.gradle/caches/transforms-3/8af0314cca28edbd3fe04d3ba5b65ce2/transformed/jetified-react-native-0.68.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/07bf552862a9cc680da52cf0905bf89b/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
@@ -222,18 +255,34 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/beets
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/b2a7938ed2181708c929b1d757b5dad1/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/fe674064534f06d4cfc58a9c7b553920/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/fe674064534f06d4cfc58a9c7b553920/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/6291e8f5bf482c0828a23094a42e32c7/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/6291e8f5bf482c0828a23094a42e32c7/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/a99c6d1110fcce2f7f123354dc4bcb64/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/a99c6d1110fcce2f7f123354dc4bcb64/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core-ktx:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/0a9ae6349b90f76aa9ab49ac792d53d8/transformed/jetified-core-ktx-1.5.0/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.core:core-ktx:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/0a9ae6349b90f76aa9ab49ac792d53d8/transformed/jetified-core-ktx-1.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/32a4a5948f8cc79fe25cf6cce8916fb8/transformed/jetified-play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/32a4a5948f8cc79fe25cf6cce8916fb8/transformed/jetified-play-services-stats-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/a5546a34100892003783fb6617f67557/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/a5546a34100892003783fb6617f67557/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b4dab32ffd285e2340b36e5b321d36f3/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b4dab32ffd285e2340b36e5b321d36f3/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/beetsoft/.gradle/caches/transforms-3/1ef9baf1ae5e5bdae753a5680c1ff1b6/transformed/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/beetsoft/.gradle/caches/transforms-3/1ef9baf1ae5e5bdae753a5680c1ff1b6/transformed/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/89802274d45f6ebc56cc6c6829242d39/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/89802274d45f6ebc56cc6c6829242d39/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.2.3] /Users/beetsoft/.gradle/caches/transforms-3/aa8c56f07525e4712fde600c47dbfa62/transformed/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.2.3] /Users/beetsoft/.gradle/caches/transforms-3/aa8c56f07525e4712fde600c47dbfa62/transformed/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/53650c10d09de60540337e7593425524/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/53650c10d09de60540337e7593425524/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/0fec66ada0145ab60cc8e3ea5cadcd9c/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/0fec66ada0145ab60cc8e3ea5cadcd9c/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cd5d9722bb7da90a73fe9f7006aaf46d/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cd5d9722bb7da90a73fe9f7006aaf46d/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/964eb5e358f3b51669daafb8a959fa14/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/964eb5e358f3b51669daafb8a959fa14/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/841667ad70d7084504d4f0de86c922ae/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -244,16 +293,12 @@ MERGED from [androidx.transition:transition:1.2.0] /Users/beetsoft/.gradle/cache
 MERGED from [androidx.transition:transition:1.2.0] /Users/beetsoft/.gradle/caches/transforms-3/d87d5c0deb14b3f33fcb1a8cb2d3d5bc/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cea9b43bbb896312fbf0aba9c810cad9/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cea9b43bbb896312fbf0aba9c810cad9/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/0d6071d0631b5e9981c68e4ae913658b/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/0d6071d0631b5e9981c68e4ae913658b/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/c39935c1e5d58e1cc668a5957564e859/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/c39935c1e5d58e1cc668a5957564e859/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.5.0] /Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/89802274d45f6ebc56cc6c6829242d39/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/89802274d45f6ebc56cc6c6829242d39/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/0fec66ada0145ab60cc8e3ea5cadcd9c/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/0fec66ada0145ab60cc8e3ea5cadcd9c/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cd5d9722bb7da90a73fe9f7006aaf46d/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/cd5d9722bb7da90a73fe9f7006aaf46d/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/9489742adf5f39c6c1a108a4f6623a97/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/9489742adf5f39c6c1a108a4f6623a97/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/ce20a6056038dd2122a4cf97c3957314/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
@@ -272,10 +317,18 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/beetsoft/.
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/beetsoft/.gradle/caches/transforms-3/3d2349027110dad689ff7d8883400e65/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/beetsoft/.gradle/caches/transforms-3/e3e50f0b896fa1ae83208d282e04334a/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/beetsoft/.gradle/caches/transforms-3/e3e50f0b896fa1ae83208d282e04334a/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/e72dbad2e969053da7ba3a03495cd9f9/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/e72dbad2e969053da7ba3a03495cd9f9/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/025cad7a70d968458776b6b6ce077b4a/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/025cad7a70d968458776b6b6ce077b4a/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/ca5886f685b61597ebc3e7bcb875f488/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/ca5886f685b61597ebc3e7bcb875f488/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/beetsoft/.gradle/caches/transforms-3/936769f7c9becfbee1183a7c54056845/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/beetsoft/.gradle/caches/transforms-3/936769f7c9becfbee1183a7c54056845/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/8779ecd7d3070371f32f4db8d4c71252/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.annotation:annotation-experimental:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/8779ecd7d3070371f32f4db8d4c71252/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/aa2b71bb8c6d30d38347b2be8555c33b/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/beetsoft/.gradle/caches/transforms-3/aa2b71bb8c6d30d38347b2be8555c33b/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 INJECTED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/beetsoft/Desktop/recycler-listview-demo/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
@@ -298,3 +351,25 @@ uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/0ae1dcc98161cd7687088e7c218bafb5/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
 	android:name
 		ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/beetsoft/.gradle/caches/transforms-3/0ae1dcc98161cd7687088e7c218bafb5/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:23:5-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-iid:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/f0552fa0dd6c081ea4efe72a858b389f/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:23:22-79
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/b835dd5ed0dceedcb893d5cf32353ee4/transformed/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/beetsoft/.gradle/caches/transforms-3/23166bfd0be5647b70a6467dc3fdf6ba/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:9:5-110
+	android:name
+		ADDED from [com.android.installreferrer:installreferrer:1.1.2] /Users/beetsoft/.gradle/caches/transforms-3/1b8f9198dd0d5cb3bdf416394be6a738/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:9:22-107

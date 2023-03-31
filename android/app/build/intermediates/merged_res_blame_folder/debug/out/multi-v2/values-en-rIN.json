@@ -4,7 +4,7 @@
             "outputFile": "/Users/beetsoft/Desktop/recycler-listview-demo/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "/Users/beetsoft/.gradle/caches/transforms-3/302b896b034c826f647d2a852f29fe08/transformed/core-1.5.0/res/values-en-rIN/values-en-rIN.xml",
+                    "source": "/Users/beetsoft/.gradle/caches/transforms-3/97f0783f956aee2f35ade8a33992ba14/transformed/core-1.6.0/res/values-en-rIN/values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

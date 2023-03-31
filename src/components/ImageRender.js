@@ -39,12 +39,10 @@ function ImageRender(props) {
   };
 
   const handlerOnClickItem = () => {
-    console.log("Click One");
     handlerOnClick(indexImage);
     setShowImageItem(true);
   };
   const hideDialogImage = () => {
-    console.log("hide dialog", JSON.stringify());
     setShowImageItem(false);
   };
 
@@ -56,7 +54,6 @@ function ImageRender(props) {
         onLongPress={() => {
           setIndex(indexImage);
           setShowImageItem(true);
-          console.log("onLongPress");
         }}
         onPressOut={() => {
           setShowImageItem(false);

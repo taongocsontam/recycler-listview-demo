@@ -15,6 +15,7 @@ import { getData } from "../../until/DataUntil";
 import { GetLayoutProvider } from "../../until/LayoutUntil";
 import { getDataImage, updateLoading } from "../../redux/actions";
 import LoadingIndicator from "../../components/LoadingIndicator";
+import Constants from "../../constants";
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ function HomeScreen({ navigation }) {
         handlerOnClick={(indexImage) => {
           console.log("index:  ", JSON.stringify(index));
           if (index == 0) {
-            navigation.navigate();
+            navigation.navigate(Constants.IMAGE_DETAIL);
           } else {
             handlerClickImage(indexImage);
           }

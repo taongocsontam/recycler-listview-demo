@@ -13,6 +13,7 @@ MERGED from [:react-native-gesture-handler] /Users/beetsoft/Desktop/recycler-lis
 MERGED from [:react-native-safe-area-context] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-svg] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-vector-icons] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.68.0] /Users/beetsoft/.gradle/caches/transforms-3/8af0314cca28edbd3fe04d3ba5b65ce2/transformed/jetified-react-native-0.68.0/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/07bf552862a9cc680da52cf0905bf89b/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [org.webkit:android-jsc:r250230] /Users/beetsoft/.gradle/caches/transforms-3/d6795c61b51d0b6b240b976a2afebc9a/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:2:1-11:12
@@ -201,6 +202,8 @@ MERGED from [:react-native-screens] /Users/beetsoft/Desktop/recycler-listview-de
 MERGED from [:react-native-screens] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-svg] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /Users/beetsoft/Desktop/recycler-listview-demo/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.0] /Users/beetsoft/.gradle/caches/transforms-3/8af0314cca28edbd3fe04d3ba5b65ce2/transformed/jetified-react-native-0.68.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.68.0] /Users/beetsoft/.gradle/caches/transforms-3/8af0314cca28edbd3fe04d3ba5b65ce2/transformed/jetified-react-native-0.68.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/beetsoft/.gradle/caches/transforms-3/07bf552862a9cc680da52cf0905bf89b/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44

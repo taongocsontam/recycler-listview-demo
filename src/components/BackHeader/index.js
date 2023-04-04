@@ -1,7 +1,9 @@
 import { StackActions } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import IconBack from "../../assets/tabbar/iconback";
 import { horizontal } from "../../scales";
+// import BackIcon from "../../assets/tabbar/ic_arrow_back.svg";
 
 const BackHeader = ({ dispatch, handleGoBack, title }) => {
   return (
@@ -11,11 +13,8 @@ const BackHeader = ({ dispatch, handleGoBack, title }) => {
         !handleGoBack ? dispatch(StackActions.pop(1)) : handleGoBack()
       }
     >
-      <Image
-        source={require("../../assets/icon/share.png")}
-        style={styles.iconBack}
-      />
-      <Text style={styles.textBack}> Text header</Text>
+      <IconBack width={20} height={20} />
+      <Text style={styles.textBack}>{title && title}</Text>
     </TouchableOpacity>
   );
 };

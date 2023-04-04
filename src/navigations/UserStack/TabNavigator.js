@@ -12,6 +12,7 @@ import ProfileInActiveIcon from "../../assets/profile/profile_inactive";
 import { ProfileStack } from "./ProfileStack";
 import { isIOS } from "../../platforms";
 import globalStyles from "../../globalStyles";
+import IndicatorIcon from "../../assets/tabbar/indicator";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -49,10 +50,9 @@ export const TabNavigator = (props) => {
           lineHeight: 14,
           marginBottom: hasNotch() && isIOS ? 15 : 5,
         },
-
         tabBarItemStyle: {
           backgroundColor: "white",
-          height: hasNotch() && isIOS ? 75 : 40,
+          height: hasNotch() && isIOS ? 75 : 60,
         },
         tabBarStyle: showTab ? styles.tabbar : [styles.tabbar, { bottom: -75 }],
       }}
@@ -61,10 +61,11 @@ export const TabNavigator = (props) => {
         name={Constants.HOMESTACK}
         component={HomeStack}
         options={{
-          title: Constants.HOME_TITLE,
-          tabBarIcon: ({ focus }) => {
-            focus ? (
+          tabBarLabel: Constants.HOME_TITLE_TAB,
+          tabBarIcon: ({ focused, color, size }) =>
+            focused ? (
               <View style={globalStyles.containIconTab}>
+                <IndicatorIcon />
                 <HomeActiveIcon />
               </View>
             ) : (
@@ -72,8 +73,7 @@ export const TabNavigator = (props) => {
                 <View style={globalStyles.emptyTabbar} />
                 <HomeInActiveIcon />
               </View>
-            );
-          },
+            ),
         }}
         listeners={({ navigator, router }) => ({
           tabPress: (e) => {},
@@ -83,10 +83,11 @@ export const TabNavigator = (props) => {
         name={Constants.PROFILESTACK}
         component={ProfileStack}
         options={{
-          title: Constants.PROFILE_TITLE,
-          tabBarIcon: ({ focus }) => {
-            focus ? (
+          tabBarLabel: Constants.PROFILE_TITLE_TAB,
+          tabBarIcon: ({ focused, color, size }) =>
+            focused ? (
               <View style={globalStyles.containIconTab}>
+                <IndicatorIcon />
                 <ProfileActiveIcon />
               </View>
             ) : (
@@ -94,8 +95,7 @@ export const TabNavigator = (props) => {
                 <View style={globalStyles.emptyTabbar} />
                 <ProfileInActiveIcon />
               </View>
-            );
-          },
+            ),
         }}
         listeners={({ navigator, router }) => ({
           tabPress: (e) => {},

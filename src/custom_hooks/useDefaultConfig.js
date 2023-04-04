@@ -7,7 +7,8 @@ import { isIOS } from "../platforms";
 import { horizontal } from "../scales";
 import { useDispatch } from "react-redux";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image } from "react-native";
+import IconHelp from "../assets/tabbar/icon_help.svg";
 
 export default function useDefaultConfig({ navigation, route }, headerRight) {
   const routeName = getFocusedRouteNameFromRoute(route);
@@ -16,12 +17,7 @@ export default function useDefaultConfig({ navigation, route }, headerRight) {
   /**
    * Click button headerRight.
    */
-  // const onHeaderRight = () => {
-  //   dispatch({
-  //     type: Actions.IS_SHOW_CALL,
-  //     data: true,
-  //   });
-  // };
+  const onHeaderRight = () => {};
   const [defaultConfig, setDefaultConfig] = useState({
     ...TransitionPresets.SlideFromRightIOS,
     headerTitleStyle: {

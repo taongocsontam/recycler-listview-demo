@@ -5,7 +5,23 @@ import {
   GET_IMAGE_ERROR,
   INCREMENT,
   DECREMENT,
+  ACCESS_TOKEN,
+  USER_STORE,
 } from "./types";
+
+export const updateToken = (token) => {
+  return {
+    type: ACCESS_TOKEN,
+    payload: token,
+  };
+};
+
+export const updateUser = (user) => {
+  return {
+    type: USER_STORE,
+    payload: user,
+  };
+};
 
 export const updateLoading = (loading) => {
   return {

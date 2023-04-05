@@ -9,13 +9,13 @@ export const UserStack = (props) => {
   const defaultConfig = useDefaultConfig(props);
   return (
     <User.Navigator screenOptions={defaultConfig}>
-      <User.Screen
+      {/* <User.Screen
         name={Constants.TUTORIAL_SCREEN}
         component={TutorialScreen}
         options={{
           headerShown: false,
         }}
-      />
+      /> */}
       <User.Screen
         name={Constants.BOTTOM_TAB}
         component={TabNavigator}

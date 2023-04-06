@@ -19,8 +19,7 @@ import Constants from "../../constants";
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.loadingReduces.isloading);
-  // const image = useSelector((state) => state.imageReduces.images);
+  const isLoading = useSelector((state) => state.appReduces.isloading);
 
   const [dataProvider, setDataProvider] = React.useState(
     new DataProvider((r1, r2) => {

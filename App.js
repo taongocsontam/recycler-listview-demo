@@ -23,14 +23,14 @@ LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 const RootStack = createStackNavigator();
 function App({ navigation }) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.tokenReduces.token);
-  console.log("token: ", JSON.stringify(token));
+  const token = useSelector((state) => state.appReduces.token);
 
   const authContext = useMemo(
     () => ({
       signIn: async (data) => {
         if (data) {
           await AsyncStorage.setItem(Constants.USER_TOKEN, data.token);
+          dispatch(updateToken(data.token));
         }
       },
       signUp: async (data) => {
@@ -39,6 +39,7 @@ function App({ navigation }) {
       signOut: async () => {
         try {
           await AsyncStorage.removeItem(Constants.USER_TOKEN);
+          dispatch(updateToken(null));
         } catch (e) {
           logger(e);
         }
@@ -50,7 +51,6 @@ function App({ navigation }) {
   useEffect(() => {
     const getAccessToken = async () => {
       const accessToken = await AsyncStorage.getItem(Constants.USER_TOKEN);
-      console.log("accessToken:  ", JSON.stringify(accessToken));
       dispatch(updateToken(accessToken));
     };
     getAccessToken();
@@ -68,7 +68,7 @@ function App({ navigation }) {
             />
           ) : (
             <RootStack.Screen
-              name={Constants.USER_STACK}
+              name={Constants.AUTHOR_STACK}
               component={AuthorStack}
               options={{ headerShown: false }}
             />

@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { TouchableOpacity, StyleSheet, View, TextInput } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  TextInput,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  Keyboard,
+} from "react-native";
 import { Text, PaperButton } from "react-native-paper";
 import Background from "../../components/Background";
 import Logo from "../../components/Logo";
@@ -9,6 +17,8 @@ import Constants from "../../constants";
 import Button from "../../components/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../context";
+import { isIOS } from "../../platforms";
+import { hasNotch } from "react-native-device-info";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -22,6 +32,7 @@ export default function LoginScreen({ navigation }) {
     });
   };
   const onLoginPressed = () => {
+    Keyboard.dismiss();
     if (email || password) {
       const responseDemo = {
         token: "0.123456789",
@@ -36,46 +47,58 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <Background>
-      <Logo />
-      <Header>Welcome back.</Header>
-      <TextInput
-        placeholder="Email"
-        returnKeyType="next"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        keyboardType="email-address"
-        style={styles.textInput}
-      />
-      <TextInput
-        style={styles.textInput}
-        placeholder="Password"
-        returnKeyType="done"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        secureTextEntry
-      />
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate(Constants.RESET_PASSWORD)}
-        >
-          <Text style={styles.forgot}>Forgot your password?</Text>
-        </TouchableOpacity>
-      </View>
-      <Button onPress={onLoginPressed} style={styles.btnLogin}>
-        <Text style={styles.textLogin}>Login</Text>
-      </Button>
-      <View style={styles.row}>
-        <Text>Don’t have an account? </Text>
-        <TouchableOpacity onPress={onSigup} style={styles.btnSigup}>
-          <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
-    </Background>
+    <KeyboardAvoidingView
+      style={styles.container}
+      keyboardVerticalOffset={isIOS && hasNotch() ? 0 : 10}
+      behavior={isIOS ? "padding" : undefined}
+      enabled={isIOS}
+    >
+      <SafeAreaView style={styles.container}>
+        <Background>
+          <Logo />
+          <Header>Welcome back.</Header>
+          <TextInput
+            placeholder="Email"
+            returnKeyType="next"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            keyboardType="email-address"
+            style={styles.textInput}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Password"
+            returnKeyType="done"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry
+          />
+          <View style={styles.forgotPassword}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(Constants.RESET_PASSWORD)}
+            >
+              <Text style={styles.forgot}>Forgot your password?</Text>
+            </TouchableOpacity>
+          </View>
+          <Button onPress={onLoginPressed} style={styles.btnLogin}>
+            <Text style={styles.textLogin}>Login</Text>
+          </Button>
+          <View style={styles.row}>
+            <Text>Don’t have an account? </Text>
+            <TouchableOpacity onPress={onSigup} style={styles.btnSigup}>
+              <Text style={styles.link}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+        </Background>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   textInput: {
     width: "100%",
     height: 45,

@@ -8,7 +8,7 @@ import RegisterScreen from "../../sceens/regitster/RegistterScreen";
 const Author = createStackNavigator();
 export const AuthorStack = (props) => {
   return (
-    <Author.Navigator>
+    <Author.Navigator initialRouteName={Constants.LOGIN_SCREEN}>
       <Author.Screen
         name={Constants.LOGIN_SCREEN}
         component={LoginScreen}

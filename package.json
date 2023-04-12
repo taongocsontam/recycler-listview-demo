@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-native-firebase/app": "^17.4.2",
+    "@react-native-firebase/firestore": "^17.4.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
@@ -28,10 +30,12 @@
     "react-native-screens": "^3.18.2",
     "react-native-svg": "^13.8.0",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-webrtc": "^1.94.2",
     "react-redux": "^8.0.5",
     "recyclerlistview": "^4.2.0",
     "redux": "^4.2.1",
-    "redux-saga": "^1.2.2"
+    "redux-saga": "^1.2.2",
+    "socket.io-client": "^4.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

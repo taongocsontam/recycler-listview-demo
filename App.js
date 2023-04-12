@@ -6,6 +6,7 @@ import {
   Text,
   View,
   LogBox,
+  Platform,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { CommonActions, NavigationContainer } from "@react-navigation/native";
@@ -16,12 +17,34 @@ import { AuthorStack } from "./src/navigations/AuthorStack/AuthorStack";
 import { AuthContext } from "./src/context/index";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { updateToken } from "./src/redux/actions";
+import firebase from "@react-native-firebase/app";
 
 LogBox.ignoreAllLogs(true);
 LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 
 const RootStack = createStackNavigator();
 function App({ navigation }) {
+  const androidCredentials = {
+    clientId:
+      "754045625445-ev0igubk7951bun8i3vql3agp6peu4dh.apps.googleusercontent.com",
+    appId: "1:754045625445:android:fc3809c305789019f6128c",
+    apiKey: "AIzaSyCANjg3WUEFcn10EfjK8QHOrkgunFMHvlU",
+    databaseURL: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    projectId: "democall-bb50b",
+  };
+
+  const credentials = Platform.select({
+    android: androidCredentials,
+  });
+
+  const initStates = async () => {
+    await firebase.initializeApp(credentials);
+  };
+  useEffect(() => {
+    initStates();
+  }, []);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.appReduces.token);
 

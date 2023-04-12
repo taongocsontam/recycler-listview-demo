@@ -42,7 +42,7 @@ export const TabNavigator = (props) => {
     <BottomTab.Navigator
       screenOptions={{
         tabBarHideOnKeyboard: true,
-        tabBarActiveTintColor: "#FD7A59",
+        tabBarActiveTintColor: "#6c99f5",
         tabBarAllowFontScaling: false,
         tabBarShowLabel: true,
         tabBarLabelStyle: {

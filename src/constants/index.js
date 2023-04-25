@@ -15,4 +15,7 @@ export default {
   REGISTER_SCREEN: "REGISTER_SCREEN",
   USER_TOKEN: "USER_TOKEN",
   CHAT_SCREEN: "CHAT_SCREEN",
+  QR_SCREEN: "QR_SCREEN",
+  HTTP: "http",
+  HTTPS: "https",
 };

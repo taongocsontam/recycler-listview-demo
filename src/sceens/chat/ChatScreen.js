@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo, useCallback } from "react";
 import {
   Text,
   View,
@@ -42,7 +42,11 @@ const ChatScreen = () => {
       video: true,
       audio: true,
     });
-    pc.current.addStream(local);
+    // pc.current.addStream(local);
+    local.getTracks().forEach((track) => {
+      console.log("track:  ", JSON.stringify(track));
+      pc.current.addTrack(track, localStream);
+    });
     setLocalStream(local);
     const remote = new MediaStream();
     setRemoteStream(remote);
@@ -72,7 +76,6 @@ const ChatScreen = () => {
     setChannelId(channelDoc.id);
 
     pc.current.onicecandidate = async (event) => {
-      console.log("event:  ", JSON.stringify(event));
       if (event.candidate) {
         await offerCandidates.add(event.candidate.toJSON());
       }
@@ -87,7 +90,6 @@ const ChatScreen = () => {
     };
 
     await channelDoc.set({ offer });
-
     channelDoc.onSnapshot((snapshot) => {
       const data = snapshot.data();
       if (!pc.current.currentRemoteDescription && data?.answer) {
@@ -96,7 +98,6 @@ const ChatScreen = () => {
       }
     });
 
-    // When answered, add candidate to peer connection
     answerCandidates.onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
@@ -108,43 +109,43 @@ const ChatScreen = () => {
   };
 
   const joinCall = async () => {
-    const channelDoc = firestore().collection("channels").doc(channelId);
-    const offerCandidates = channelDoc.collection("offerCandidates");
-    const answerCandidates = channelDoc.collection("answerCandidates");
+    if (channelId) {
+      const channelDoc = firestore().collection("channels").doc(channelId);
+      const offerCandidates = channelDoc.collection("offerCandidates");
+      const answerCandidates = channelDoc.collection("answerCandidates");
 
-    pc.current.onicecandidate = async (event) => {
-      if (event.candidate) {
-        await answerCandidates.add(event.candidate.toJSON());
-      }
-    };
-
-    const channelDocument = await channelDoc.get();
-    const channelData = channelDocument.data();
-
-    const offerDescription = channelData.offer;
-
-    await pc.current.setRemoteDescription(
-      new RTCSessionDescription(offerDescription)
-    );
-
-    const answerDescription = await pc.current.createAnswer();
-    await pc.current.setLocalDescription(answerDescription);
-
-    const answer = {
-      type: answerDescription.type,
-      sdp: answerDescription.sdp,
-    };
-
-    await channelDoc.update({ answer });
-
-    offerCandidates.onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-          const data = change.doc.data();
-          pc.current.addIceCandidate(new RTCIceCandidate(data));
+      pc.current.onicecandidate = async (event) => {
+        if (event.candidate) {
+          await answerCandidates.add(event.candidate.toJSON());
         }
+      };
+
+      const channelDocument = await channelDoc.get();
+      const channelData = channelDocument.data();
+      const offerDescription = channelData.offer;
+      const response = await pc.current.setRemoteDescription(
+        new RTCSessionDescription(offerDescription)
+      );
+
+      const answerDescription = await pc.current.createAnswer();
+      console.log("answerDescription:  ", JSON.stringify(answerDescription));
+      await pc.current.setLocalDescription(answerDescription);
+
+      const answer = {
+        type: answerDescription.type,
+        sdp: answerDescription.sdp,
+      };
+
+      await channelDoc.update({ answer });
+      offerCandidates.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            const data = change.doc.data();
+            pc.current.addIceCandidate(new RTCIceCandidate(data));
+          }
+        });
       });
-    });
+    }
   };
 
   return (

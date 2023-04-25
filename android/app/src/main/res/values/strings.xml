@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Call WebRTC</string>
+    <!--Key codepush product-->
+    <!--XqTqTwGCA052d9qR-zjAaRHglq1I8SGZcNpXI-->
+    <!--Key codepush staging-->
+    <string moduleConfig="true" name="CodePushDeploymentKey">kEfQDLuBDketCptIGauXQjtXGhgnv_d5_FMzI</string>
 </resources>

@@ -11,7 +11,7 @@ export const ProfileStack = (props) => {
   const defaultConfig = useDefaultConfig(props);
   return (
     <Profile.Navigator
-      initialRouteName={Constants.QR_SCREEN}
+      initialRouteName={Constants.CHAT_SCREEN}
       screenOptions={defaultConfig}
     >
       {/* <Profile.Screen

@@ -19,7 +19,6 @@ const ImageDetail = () => {
     <View style={styles.container}>
       {heads.map((item, index, items) => {
         const pan = index === items.length - 1 ? panResponder.panHandlers : {};
-        console.log('item:  ', JSON.stringify(item.animations));
         return (
           <Animated.Image
             key={index}

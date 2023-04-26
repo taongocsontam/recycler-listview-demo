@@ -7,6 +7,9 @@ import App from "./App";
 import { name as appName } from "./app.json";
 import { Provider } from "react-redux";
 import store from "./src/redux/stores";
+import { register } from '@videosdk.live/react-native-sdk';
+
+register();
 
 function HeadlessCheck({ isHeadless }) {
   if (isHeadless) {

@@ -141,7 +141,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
-        missingDimensionStrategy 'react-native-camera', 'mlkit'
+        missingDimensionStrategy 'react-native-camera', 'general'
         multiDexEnabled true
 
         if (isNewArchitectureEnabled()) {

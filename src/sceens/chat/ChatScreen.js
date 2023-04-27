@@ -22,8 +22,14 @@ import { ROBOTO_FONTS } from "../../styles/fonts";
 import { useFocusEffect } from "@react-navigation/native";
 import Menu from "../../components/Menu";
 import MenuItem from "../../components/Menu/MenuItem";
+import {
+  createMeeting,
+  getTokenVideoSDK,
+  validateMeeting,
+} from "../../api/videosdk/api";
+import Constants from "../../constants";
 
-const ChatScreen = () => {
+const ChatScreen = (props) => {
   const [tracks, setTrack] = useState("");
   const [micOn, setMicon] = useState(true);
   const [videoOn, setVideoOn] = useState(true);
@@ -241,15 +247,14 @@ const ChatScreen = () => {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={async () => {
-                    console.log('name: ', JSON.stringify(name));
                     if (name.length <= 0) {
                       Toast.show("Please enter your name", Toast.SHORT);
                       return;
                     }
-                    const token = await getToken();
+                    const token = await getTokenVideoSDK();
                     let meetingId = await createMeeting({ token: token });
                     disposeVideoTrack();
-                    navigation.navigate(SCREEN_NAMES.Meeting, {
+                    props.navigation.navigate(Constants.MEETING_SCREEN, {
                       name: name.trim(),
                       token: token,
                       meetingId: meetingId,
@@ -324,14 +329,15 @@ const ChatScreen = () => {
 
                       return;
                     }
-                    const token = await getToken();
+                    const token = await getTokenVideoSDK();
                     let valid = await validateMeeting({
                       token: token,
                       meetingId: meetingId.trim(),
                     });
+                    console.log("valid:  ", JSON.stringify(valid));
                     if (valid) {
                       disposeVideoTrack();
-                      navigation.navigate(SCREEN_NAMES.Meeting, {
+                      props.navigation.navigate(Constants.MEETING_SCREEN, {
                         name: name.trim(),
                         token: token,
                         meetingId: meetingId.trim(),

@@ -16,6 +16,7 @@ export default {
   USER_TOKEN: "USER_TOKEN",
   CHAT_SCREEN: "CHAT_SCREEN",
   QR_SCREEN: "QR_SCREEN",
+  MEETING_SCREEN: "MEETING_SCREEN",
   HTTP: "http",
   HTTPS: "https",
 };

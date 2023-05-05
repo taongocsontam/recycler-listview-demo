@@ -1,4 +1,10 @@
-import React, { useRef, useState, useMemo, useCallback } from "react";
+import React, {
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import {
   Text,
   View,
@@ -11,6 +17,7 @@ import {
   Platform,
   Keyboard,
   BackHandler,
+  AppState,
 } from "react-native";
 import { theme } from "../../core/theme";
 import { RTCView, mediaDevices } from "@videosdk.live/react-native-sdk";
@@ -35,6 +42,7 @@ const ChatScreen = (props) => {
   const [videoOn, setVideoOn] = useState(true);
   const [name, setName] = useState("");
   const [meetingId, setMeetingId] = useState("");
+  const appState = useRef(AppState.currentState);
 
   const meetingTypes = [
     { key: "ONE_TO_ONE", value: "One to One Meeting" },
@@ -62,11 +70,41 @@ const ChatScreen = (props) => {
     return !isVisibleJoinMeetingContainer && !isVisibleCreateMeetingContainer;
   };
 
+  const _handleAppStateChange = (nextAppState) => {
+    if (
+      appState.current.match(/inactive|background/) &&
+      nextAppState === "active"
+    ) {
+      console.log("App has come to the foreground!");
+      mediaDevices
+        .getUserMedia({ audio: false, video: true })
+        .then((stream) => {
+          console.log("stream:   ", JSON.stringify(stream));
+          setTrack(stream);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      console.log("app goes to background");
+      appState.current = nextAppState;
+    }
+  };
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange);
+    };
+  }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       mediaDevices
         .getUserMedia({ audio: false, video: true })
         .then((stream) => {
+          console.log("stream:   ", JSON.stringify(stream));
           setTrack(stream);
         })
         .catch((e) => {
@@ -97,18 +135,13 @@ const ChatScreen = (props) => {
   );
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
+    <SafeAreaView style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView
-          style={[
-            styles.container,
-            {
-              justifyContent: "space-between",
-            },
-          ]}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          style={styles.viewKeyboard}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 10}
+          enabled={Platform.OS === "ios"}
         >
           <View style={styles.viewTop}>
             <View style={styles.viewCenter}>
@@ -173,7 +206,16 @@ const ChatScreen = (props) => {
               </View>
             </View>
           </View>
-          <View style={{ marginHorizontal: 32 }}>
+          <View
+            style={{
+              marginHorizontal: 32,
+              marginTop:
+                isVisibleCreateMeetingContainer ||
+                !isVisibleJoinMeetingContainer
+                  ? 35
+                  : 0,
+            }}
+          >
             {!isVisibleCreateMeetingContainer &&
               !isVisibleJoinMeetingContainer && (
                 <>
@@ -334,7 +376,6 @@ const ChatScreen = (props) => {
                       token: token,
                       meetingId: meetingId.trim(),
                     });
-                    console.log("valid:  ", JSON.stringify(valid));
                     if (valid) {
                       disposeVideoTrack();
                       props.navigation.navigate(Constants.MEETING_SCREEN, {
@@ -353,9 +394,9 @@ const ChatScreen = (props) => {
               </>
             ) : null}
           </View>
-        </SafeAreaView>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -365,6 +406,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.primary["900"],
+    justifyContent: "space-between",
+  },
+  viewKeyboard: {
+    flex: 1,
   },
   viewTop: {
     paddingTop: "15%",

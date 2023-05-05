@@ -1,13 +1,14 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '12'
+platform :ios, '13'
 
 pod 'Firebase', :modular_headers => true
 pod 'FirebaseCoreInternal', :modular_headers => true
 pod 'GoogleUtilities', :modular_headers => true
 pod 'FirebaseCore', :modular_headers => true
 pod 'CodePush', :path => '../node_modules/react-native-code-push'
+pod 'react-native-webrtc', :path => ‘../node_modules/@videosdk.live/react-native-webrtc’
 
 install! 'cocoapods', :deterministic_uuids => false
 

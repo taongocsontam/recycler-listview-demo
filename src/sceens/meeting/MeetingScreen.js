@@ -1,11 +1,10 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import colors from "../../styles/colors";
 import {
   MeetingConsumer,
   MeetingProvider,
 } from "@videosdk.live/react-native-sdk";
-// import MeetingContainer from "./MeetingContainer";
 import Constants from "../../constants";
 import MeetingContainer from "./MeetingContainer";
 
@@ -16,10 +15,9 @@ function MeetingScreen({ navigation, route }) {
   const webcamEnabled = route.params.webcamEnabled;
   const name = route.params.name;
   const meetingType = route.params.meetingType;
+  console.log("params:  ", JSON.stringify(route.params));
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.primary[900], padding: 12 }}
-    >
+    <SafeAreaView style={styles.container}>
       <MeetingProvider
         config={{
           meetingId: meetingId,
@@ -55,3 +53,11 @@ function MeetingScreen({ navigation, route }) {
 }
 
 export default MeetingScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.primary[900],
+    padding: 12,
+  },
+});

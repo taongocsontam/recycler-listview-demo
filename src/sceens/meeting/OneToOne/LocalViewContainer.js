@@ -1,6 +1,6 @@
 import { useParticipant } from "@videosdk.live/react-native-sdk";
 import React, { useEffect } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import colors from "../../../styles/colors";
 import LargeVideoRTCView from "./LargeView/LargeVideoRTCView";
 
@@ -13,14 +13,7 @@ function LocalViewContainer({ participantId }) {
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: colors.primary[800],
-        borderRadius: 12,
-        overflow: "hidden",
-      }}
-    >
+    <View style={styles.container}>
       <LargeVideoRTCView
         isOn={webcamOn}
         stream={webcamStream}
@@ -33,3 +26,12 @@ function LocalViewContainer({ participantId }) {
 }
 
 export default LocalViewContainer;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.primary[800],
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+});

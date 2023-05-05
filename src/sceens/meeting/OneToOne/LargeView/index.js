@@ -1,22 +1,11 @@
 import { useParticipant } from "@videosdk.live/react-native-sdk";
 import React, { useEffect } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { NetworkIcon } from "../../../../assets/icons";
 import colors from "../../../../styles/colors";
 import useParticipantStat from "../../Hooks/useParticipantStat";
 import LargeVideoRTCView from "./LargeVideoRTCView";
 
-const buttonStyle = {
-  alignItems: "center",
-  position: "absolute",
-  top: 10,
-  padding: 8,
-  height: 26,
-  aspectRatio: 1,
-  borderRadius: 12,
-  justifyContent: "center",
-  left: 10,
-};
 export default LargeViewContainer = ({
   participantId,
   openStatsBottomSheet,
@@ -41,14 +30,7 @@ export default LargeViewContainer = ({
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: colors.primary[800],
-        borderRadius: 12,
-        overflow: "hidden",
-      }}
-    >
+    <View style={styles.container}>
       {screenShareOn ? (
         <LargeVideoRTCView
           stream={screenShareStream}
@@ -69,7 +51,7 @@ export default LargeViewContainer = ({
           {micOn || webcamOn ? (
             <TouchableOpacity
               style={{
-                ...buttonStyle,
+                ...styles.buttonStyle,
                 backgroundColor:
                   score && score > 7
                     ? "#3BA55D"
@@ -89,3 +71,23 @@ export default LargeViewContainer = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.primary[800],
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+  buttonStyle: {
+    alignItems: "center",
+    position: "absolute",
+    top: 10,
+    padding: 8,
+    height: 26,
+    aspectRatio: 1,
+    borderRadius: 12,
+    justifyContent: "center",
+    left: 10,
+  },
+});

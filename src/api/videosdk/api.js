@@ -2,7 +2,7 @@ import { getData, postDataApi } from "..";
 
 const API_BASE_URL = "https://api.videosdk.live/v2";
 const VIDEOSDK_TOKEN = "";
-const API_AUTH_URL = "http://192.168.1.24:3000";
+const API_AUTH_URL = "http://192.168.1.199:3000";
 
 export const getTokenVideoSDK = async () => {
   if (VIDEOSDK_TOKEN && API_AUTH_URL) {

@@ -44,6 +44,7 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import LargeView from "./LargeView";
 import LocalParticipantPresenter from "../LocalParticipantPresenter";
 import LocalViewContainer from "./LocalViewContainer";
+import MiniView from "./MiniView";
 
 export default function OneToOneMeetingViewer() {
   const {
@@ -141,10 +142,7 @@ export default function OneToOneMeetingViewer() {
                 source={recording_lottie}
                 autoPlay
                 loop
-                style={{
-                  height: 30,
-                  width: 5,
-                }}
+                style={styles.lottie}
               />
             </Blink>
           </View>
@@ -162,13 +160,7 @@ export default function OneToOneMeetingViewer() {
           }}
         >
           <View style={styles.viewClipboard}>
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: ROBOTO_FONTS.RobotoBold,
-                color: colors.primary[100],
-              }}
-            >
+            <Text style={styles.textMeetingId}>
               {meetingId ? meetingId : "xxx - xxx - xxx"}
             </Text>
 
@@ -205,7 +197,7 @@ export default function OneToOneMeetingViewer() {
                 openStatsBottomSheet={openStatsBottomSheet}
               />
             )}
-            <Mini
+            <MiniView
               openStatsBottomSheet={openStatsBottomSheet}
               participantId={
                 participantIds[localScreenShareOn || presenterId ? 1 : 0]
@@ -215,9 +207,7 @@ export default function OneToOneMeetingViewer() {
         ) : participantCount === 1 ? (
           <LocalViewContainer participantId={participantIds[0]} />
         ) : (
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
+          <View style={styles.viewLoad}>
             <ActivityIndicator size={"large"} />
           </View>
         )}
@@ -236,12 +226,7 @@ export default function OneToOneMeetingViewer() {
             moreOptionsMenu.current.close();
           }}
         />
-        <View
-          style={{
-            height: 1,
-            backgroundColor: colors.primary["600"],
-          }}
-        />
+        <View style={styles.viewLaneWhite} />
         <MenuItem
           title={"End"}
           description={"End call for all participants"}
@@ -278,12 +263,7 @@ export default function OneToOneMeetingViewer() {
               />
 
               {index != audioDevice.length - 1 && (
-                <View
-                  style={{
-                    height: 1,
-                    backgroundColor: colors.primary["600"],
-                  }}
-                />
+                <View style={styles.viewLaneWhite} />
               )}
             </View>
           );
@@ -356,27 +336,18 @@ export default function OneToOneMeetingViewer() {
         />
       </Menu>
       {/* Bottom */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-        }}
-      >
+      <View style={styles.viewBottom}>
         <IconContainer
           backgroundColor={"red"}
           Icon={() => {
             return <CallEnd height={26} width={26} fill="#FFF" />;
           }}
           onPress={() => {
-            // leave();
             leaveMenu.current.show();
           }}
         />
         <IconContainer
-          style={{
-            paddingLeft: 0,
-            height: 52,
-          }}
+          style={styles.iconVoice}
           isDropDown={true}
           onDropDownPress={async () => {
             await updateAudioDeviceList();
@@ -395,10 +366,7 @@ export default function OneToOneMeetingViewer() {
           }}
         />
         <IconContainer
-          style={{
-            borderWidth: 1.5,
-            borderColor: "#2B3034",
-          }}
+          style={styles.iconWebcam}
           backgroundColor={!localWebcamOn ? colors.primary[100] : "transparent"}
           onPress={() => {
             toggleWebcam();
@@ -416,20 +384,13 @@ export default function OneToOneMeetingViewer() {
             setchatViewer(true);
             bottomSheetRef.current.show();
           }}
-          style={{
-            borderWidth: 1.5,
-            borderColor: "#2B3034",
-          }}
+          style={styles.iconChat}
           Icon={() => {
             return <Chat height={22} width={22} fill="#FFF" />;
           }}
         />
         <IconContainer
-          style={{
-            borderWidth: 1.5,
-            borderColor: "#2B3034",
-            transform: [{ rotate: "90deg" }],
-          }}
+          style={styles.iconMore}
           onPress={() => {
             moreOptionsMenu.current.show();
           }}
@@ -470,14 +431,54 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
+  lottie: {
+    height: 30,
+    width: 5,
+    backgroundColor: "red",
+  },
   viewClipboard: { flexDirection: "row" },
   btnClipboard: {
     justifyContent: "center",
     marginLeft: 10,
   },
+  textMeetingId: {
+    fontSize: 16,
+    fontFamily: ROBOTO_FONTS.RobotoBold,
+    color: colors.primary[100],
+  },
+  viewLoad: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   viewContainer: {
     flex: 1,
     marginTop: 8,
     marginBottom: 12,
+  },
+  viewBottom: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  viewLaneWhite: {
+    height: 1,
+    backgroundColor: colors.primary["600"],
+  },
+  iconVoice: {
+    paddingLeft: 0,
+    height: 52,
+  },
+  iconWebcam: {
+    borderWidth: 1.5,
+    borderColor: "#2B3034",
+  },
+  iconChat: {
+    borderWidth: 1.5,
+    borderColor: "#2B3034",
+  },
+  iconMore: {
+    borderWidth: 1.5,
+    borderColor: "#2B3034",
+    transform: [{ rotate: "90deg" }],
   },
 });

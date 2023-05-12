@@ -18,6 +18,7 @@ import {
   Keyboard,
   BackHandler,
   AppState,
+  ScrollView,
 } from "react-native";
 import { theme } from "../../core/theme";
 import { RTCView, mediaDevices } from "@videosdk.live/react-native-sdk";
@@ -79,7 +80,6 @@ const ChatScreen = (props) => {
       mediaDevices
         .getUserMedia({ audio: false, video: true })
         .then((stream) => {
-          console.log("stream:   ", JSON.stringify(stream));
           setTrack(stream);
         })
         .catch((e) => {
@@ -104,7 +104,6 @@ const ChatScreen = (props) => {
       mediaDevices
         .getUserMedia({ audio: false, video: true })
         .then((stream) => {
-          console.log("stream:   ", JSON.stringify(stream));
           setTrack(stream);
         })
         .catch((e) => {
@@ -140,7 +139,7 @@ const ChatScreen = (props) => {
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
           style={styles.viewKeyboard}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 10}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 60}
           enabled={Platform.OS === "ios"}
         >
           <View style={styles.viewTop}>

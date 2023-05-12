@@ -9,30 +9,21 @@ import {
 } from "react-native";
 import { AuthContext } from "../../context";
 import usePanResponder from "../../custom_hooks/usePanResponder";
+import Button from "../../components/Button";
 
 const ImageDetail = () => {
-  const imageUrl =
-    "https://avatars2.githubusercontent.com/u/22999030?s=460&v=4";
-  const [heads, panResponder] = usePanResponder(imageUrl);
-
+  const { signOut } = useContext(AuthContext);
+  const navigateUserStack = () => {
+    signOut();
+  };
+  const onLogoutPressed = () => {
+    navigateUserStack();
+  };
   return (
     <View style={styles.container}>
-      {heads.map((item, index, items) => {
-        const pan = index === items.length - 1 ? panResponder.panHandlers : {};
-        return (
-          <Animated.Image
-            key={index}
-            {...pan}
-            style={[
-              styles.head,
-              // {
-              //   transform: item.animation.getTranslateTransform(),
-              // },
-            ]}
-            source={{ uri: item.image }}
-          />
-        );
-      })}
+      <Button onPress={onLogoutPressed} style={styles.btnLogout}>
+        <Text style={styles.textLogout}>Logout</Text>
+      </Button>
     </View>
   );
 };
@@ -55,5 +46,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
+  },
+  btnLogout: {
+    height: 45,
+    width: "100%",
+    borderRadius: 5,
+    backgroundColor: "#6c99f5",
+    alignItems: "center",
+  },
+  textLogout: {
+    color: "white",
   },
 });

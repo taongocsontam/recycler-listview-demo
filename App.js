@@ -40,7 +40,9 @@ function App({ navigation }) {
   });
 
   const initStates = async () => {
-    await firebase.initializeApp(credentials);
+    if (!firebase.apps.length) {
+      await firebase.initializeApp(credentials);
+    }
   };
   useEffect(() => {
     initStates();

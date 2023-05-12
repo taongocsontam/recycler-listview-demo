@@ -13,6 +13,9 @@ import { ProfileStack } from "./ProfileStack";
 import { isIOS } from "../../platforms";
 import globalStyles from "../../globalStyles";
 import IndicatorIcon from "../../assets/tabbar/indicator";
+import { CallStack } from "./CallStack";
+import CallActiveIcon from "../../assets/call/call_active";
+import CallInActiveIcon from "../../assets/call/call_inactive";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -61,6 +64,7 @@ export const TabNavigator = (props) => {
         name={Constants.HOMESTACK}
         component={HomeStack}
         options={{
+          headerShown: false,
           tabBarLabel: Constants.HOME_TITLE_TAB,
           tabBarIcon: ({ focused, color, size }) =>
             focused ? (
@@ -80,9 +84,33 @@ export const TabNavigator = (props) => {
         })}
       />
       <BottomTab.Screen
+        name={Constants.CALL_STACK}
+        component={CallStack}
+        options={{
+          headerShown: false,
+          tabBarLabel: Constants.CALL_TITLE_TAB,
+          tabBarIcon: ({ focused, color, size }) =>
+            focused ? (
+              <View style={globalStyles.containIconTab}>
+                <IndicatorIcon />
+                <CallActiveIcon />
+              </View>
+            ) : (
+              <View style={globalStyles.containIconTab}>
+                <View style={globalStyles.emptyTabbar} />
+                <CallInActiveIcon />
+              </View>
+            ),
+        }}
+        listeners={({ navigator, router }) => ({
+          tabPress: (e) => {},
+        })}
+      />
+      <BottomTab.Screen
         name={Constants.PROFILESTACK}
         component={ProfileStack}
         options={{
+          headerShown: false,
           tabBarLabel: Constants.PROFILE_TITLE_TAB,
           tabBarIcon: ({ focused, color, size }) =>
             focused ? (

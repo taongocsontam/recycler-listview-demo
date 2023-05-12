@@ -12,7 +12,6 @@ export default function MeetingContainer({ webcamEnabled, meetingType }) {
 
   const { join, changeWebcam, participants, leave } = useMeeting({
     onMeetingJoined: () => {
-      console.log("par join");
       setTimeout(() => {
         setJoined(true);
       }, 500);

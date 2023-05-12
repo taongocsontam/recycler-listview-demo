@@ -19,6 +19,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context";
 import { isIOS } from "../../platforms";
 import { hasNotch } from "react-native-device-info";
+import { KeyboardAccessoryView } from "react-native-keyboard-accessory";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -135,5 +136,26 @@ const styles = StyleSheet.create({
   },
   textLogin: {
     color: "white",
+  },
+  textInputView: {
+    padding: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "red",
+    width: "80%",
+  },
+  textInputKeyboard: {
+    flexGrow: 1,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: "#CCC",
+    padding: 10,
+    fontSize: 16,
+    marginRight: 10,
+    textAlignVertical: "top",
+  },
+  btnKeyboard: {
+    flexShrink: 1,
   },
 });

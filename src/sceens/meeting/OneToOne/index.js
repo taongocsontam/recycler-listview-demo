@@ -70,7 +70,7 @@ export default function OneToOneMeetingViewer() {
   } = useMeeting({
     onError: (data) => {
       const { code, message } = data;
-      Toast.show(`Error: ${code}: ${message}`);
+      Toast.show(`Error: ${code}: ${message}`, Toast.SHORT);
     },
   });
 
@@ -379,7 +379,7 @@ export default function OneToOneMeetingViewer() {
             );
           }}
         />
-        <IconContainer
+        {/* <IconContainer
           onPress={() => {
             setchatViewer(true);
             bottomSheetRef.current.show();
@@ -397,7 +397,7 @@ export default function OneToOneMeetingViewer() {
           Icon={() => {
             return <More height={18} width={18} fill="#FFF" />;
           }}
-        />
+        /> */}
       </View>
       {/* <BottomSheet
         sheetBackgroundColor={"#2B3034"}

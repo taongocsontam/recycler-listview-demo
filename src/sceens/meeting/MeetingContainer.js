@@ -1,10 +1,10 @@
 import {
-  useMeeting,
   ReactNativeForegroundService,
+  useMeeting,
 } from "@videosdk.live/react-native-sdk";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import CallGroupViewer from "./CallGroup/CallGroup";
 import OneToOneMeetingViewer from "./OneToOne";
-import React from "react";
 
 export default function MeetingContainer({ webcamEnabled, meetingType }) {
   const [isJoined, setJoined] = useState(false);
@@ -46,5 +46,8 @@ export default function MeetingContainer({ webcamEnabled, meetingType }) {
     };
   }, []);
 
-  return isJoined && <OneToOneMeetingViewer />;
+  return (
+    isJoined &&
+    (meetingType === "GROUP" ? <CallGroupViewer /> : <OneToOneMeetingViewer />)
+  );
 }

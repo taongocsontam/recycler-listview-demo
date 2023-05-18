@@ -1,11 +1,11 @@
-import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
-import colors from "../../styles/colors";
 import {
   MeetingConsumer,
   MeetingProvider,
 } from "@videosdk.live/react-native-sdk";
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
 import Constants from "../../constants";
+import colors from "../../styles/colors";
 import MeetingContainer from "./MeetingContainer";
 
 function MeetingScreen({ navigation, route }) {

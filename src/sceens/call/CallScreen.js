@@ -6,7 +6,7 @@ import Toast from "react-native-simple-toast";
 
 function CallScreen({ navigation, route }) {
   const onCallGroup = () => {
-    Toast.show("Cooming Soon", Toast.SHORT);
+    Toast.show("Coming Soon", Toast.SHORT);
   };
 
   const onCallOneToOne = () => {
@@ -14,7 +14,8 @@ function CallScreen({ navigation, route }) {
   };
 
   const onLiveStreamingScreen = () => {
-    navigation.navigate(Constants.LIVE_STREAMING_SCREEN);
+    Toast.show("Coming Soon", Toast.SHORT);
+    // navigation.navigate(Constants.LIVE_STREAMING_SCREEN);
   };
 
   return (

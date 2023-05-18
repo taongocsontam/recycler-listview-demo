@@ -1,41 +1,32 @@
-import React, {
-  useRef,
-  useState,
-  useMemo,
-  useCallback,
-  useEffect,
-} from "react";
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Platform,
-  Keyboard,
-  BackHandler,
-  AppState,
-  ScrollView,
-} from "react-native";
-import { theme } from "../../core/theme";
-import { RTCView, mediaDevices } from "@videosdk.live/react-native-sdk";
-import colors from "../../styles/colors";
-import { MicOff, MicOn, VideoOff, VideoOn } from "../../assets/icons";
-import TextInputContainer from "../../components/TextInputContainer";
-import Toast from "react-native-simple-toast";
-import { ROBOTO_FONTS } from "../../styles/fonts";
 import { useFocusEffect } from "@react-navigation/native";
-import Menu from "../../components/Menu";
-import MenuItem from "../../components/Menu/MenuItem";
+import { RTCView, mediaDevices } from "@videosdk.live/react-native-sdk";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  AppState,
+  BackHandler,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import Toast from "react-native-simple-toast";
 import {
   createMeeting,
   getTokenVideoSDK,
   validateMeeting,
 } from "../../api/videosdk/api";
+import { MicOff, MicOn, VideoOff, VideoOn } from "../../assets/icons";
+import Menu from "../../components/Menu";
+import MenuItem from "../../components/Menu/MenuItem";
+import TextInputContainer from "../../components/TextInputContainer";
 import Constants from "../../constants";
+import colors from "../../styles/colors";
+import { ROBOTO_FONTS } from "../../styles/fonts";
 
 const ChatScreen = (props) => {
   const [tracks, setTrack] = useState("");
@@ -257,6 +248,7 @@ const ChatScreen = (props) => {
                   ref={optionRef}
                   menuBackgroundColor={colors.primary[700]}
                   fullWidth
+                  bottom={265}
                 >
                   {meetingTypes.map((meetingType, index) => {
                     return (
@@ -294,15 +286,22 @@ const ChatScreen = (props) => {
                     }
                     const token = await getTokenVideoSDK();
                     let meetingId = await createMeeting({ token: token });
-                    disposeVideoTrack();
-                    props.navigation.navigate(Constants.MEETING_SCREEN, {
-                      name: name.trim(),
-                      token: token,
-                      meetingId: meetingId,
-                      micEnabled: micOn,
-                      webcamEnabled: videoOn,
-                      meetingType: meetingType.key,
-                    });
+                    if (token != undefined && meetingId != undefined) {
+                      disposeVideoTrack();
+                      props.navigation.navigate(Constants.MEETING_SCREEN, {
+                        name: name.trim(),
+                        token: token,
+                        meetingId: meetingId,
+                        micEnabled: micOn,
+                        webcamEnabled: videoOn,
+                        meetingType: meetingType.key,
+                      });
+                    } else {
+                      Toast.show(
+                        "Server video-sdk not connecting!",
+                        Toast.SHORT
+                      );
+                    }
                   }}
                 >
                   <Text>Join a meeting</Text>
@@ -324,7 +323,7 @@ const ChatScreen = (props) => {
                   ref={optionRef}
                   menuBackgroundColor={colors.primary[700]}
                   fullWidth
-                  bottom={120}
+                  bottom={290}
                 >
                   {meetingTypes.map((meetingType, index) => {
                     return (
@@ -375,7 +374,7 @@ const ChatScreen = (props) => {
                       token: token,
                       meetingId: meetingId.trim(),
                     });
-                    if (valid) {
+                    if (valid && token != undefined) {
                       disposeVideoTrack();
                       props.navigation.navigate(Constants.MEETING_SCREEN, {
                         name: name.trim(),
@@ -385,6 +384,11 @@ const ChatScreen = (props) => {
                         webcamEnabled: videoOn,
                         meetingType: meetingType.key,
                       });
+                    } else {
+                      Toast.show(
+                        "Server video-sdk not connecting!",
+                        Toast.SHORT
+                      );
                     }
                   }}
                 >

@@ -1,11 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import { View } from "react-native";
 import Constants from "../../constants";
 import useDefaultConfig from "../../custom_hooks/useDefaultConfig";
-import MeetingScreen from "../../sceens/meeting/MeetingScreen";
-import ChatScreen from "../../sceens/chat/ChatScreen";
 import CallScreen from "../../sceens/call/CallScreen";
-import { View } from "react-native";
+import ChatScreen from "../../sceens/chat/ChatScreen";
 import LiveStreamingScreen from "../../sceens/live_streaming/LiveStreamingScreen";
+import CallGroup from "../../sceens/meeting/CallGroup/CallGroup";
+import MeetingScreen from "../../sceens/meeting/MeetingScreen";
 
 const Call = createStackNavigator();
 
@@ -34,6 +35,11 @@ export const CallStack = (props) => {
       <Call.Screen
         name={Constants.MEETING_SCREEN}
         component={MeetingScreen}
+        options={{ headerShown: false }}
+      />
+      <Call.Screen
+        name={Constants.CALL_GROUP}
+        component={CallGroup}
         options={{ headerShown: false }}
       />
     </Call.Navigator>

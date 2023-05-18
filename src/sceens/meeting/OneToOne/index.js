@@ -45,6 +45,9 @@ import LargeView from "./LargeView";
 import LocalParticipantPresenter from "../LocalParticipantPresenter";
 import LocalViewContainer from "./LocalViewContainer";
 import MiniView from "./MiniView";
+import ChatViewer from "../components/ChatViewer";
+import BottomSheet from "../../../components/BottomSheet";
+import { screenHeight } from "../../../platforms";
 
 export default function OneToOneMeetingViewer() {
   const {
@@ -379,7 +382,7 @@ export default function OneToOneMeetingViewer() {
             );
           }}
         />
-        {/* <IconContainer
+        <IconContainer
           onPress={() => {
             setchatViewer(true);
             bottomSheetRef.current.show();
@@ -389,7 +392,7 @@ export default function OneToOneMeetingViewer() {
             return <Chat height={22} width={22} fill="#FFF" />;
           }}
         />
-        <IconContainer
+        {/* <IconContainer
           style={styles.iconMore}
           onPress={() => {
             moreOptionsMenu.current.show();
@@ -399,9 +402,9 @@ export default function OneToOneMeetingViewer() {
           }}
         /> */}
       </View>
-      {/* <BottomSheet
+      <BottomSheet
         sheetBackgroundColor={"#2B3034"}
-        draggable={true}
+        draggable
         radius={12}
         hasDraggableIcon
         closeFunction={() => {
@@ -411,16 +414,10 @@ export default function OneToOneMeetingViewer() {
           setstatParticipantId("");
         }}
         ref={bottomSheetRef}
-        height={Dimensions.get("window").height * 0.5}
+        height={screenHeight * 0.5}
       >
-        {chatViewer ? (
-          <ChatViewer />
-        ) : participantListViewer ? (
-          <ParticipantListViewer participantIds={participantIds} />
-        ) : participantStatsViewer ? (
-          <ParticipantStatsViewer participantId={statParticipantId} />
-        ) : null}
-      </BottomSheet> */}
+        {chatViewer ? <ChatViewer /> : null}
+      </BottomSheet>
     </>
   );
 }

@@ -15,7 +15,6 @@ function MeetingScreen({ navigation, route }) {
   const webcamEnabled = route.params.webcamEnabled;
   const name = route.params.name;
   const meetingType = route.params.meetingType;
-  console.log("params:  ", JSON.stringify(route.params));
   return (
     <SafeAreaView style={styles.container}>
       <MeetingProvider

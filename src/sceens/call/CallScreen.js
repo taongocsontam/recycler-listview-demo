@@ -18,6 +18,10 @@ function CallScreen({ navigation, route }) {
     // navigation.navigate(Constants.LIVE_STREAMING_SCREEN);
   };
 
+  const onMessegerScreeen = () => {
+    navigation.navigate(Constants.MESSENGER_SCREEN);
+  };
+
   return (
     <View style={styles.container}>
       <Button onPress={onCallOneToOne} style={styles.btn}>
@@ -28,6 +32,9 @@ function CallScreen({ navigation, route }) {
       </Button>
       <Button onPress={onLiveStreamingScreen} style={styles.btn}>
         <Text style={styles.textButton}>Live Streaming</Text>
+      </Button>
+      <Button onPress={onMessegerScreeen} style={styles.btn}>
+        <Text style={styles.textButton}>Messeger</Text>
       </Button>
     </View>
   );

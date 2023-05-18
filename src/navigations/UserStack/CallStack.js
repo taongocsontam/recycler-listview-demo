@@ -7,6 +7,7 @@ import ChatScreen from "../../sceens/chat/ChatScreen";
 import LiveStreamingScreen from "../../sceens/live_streaming/LiveStreamingScreen";
 import CallGroup from "../../sceens/meeting/CallGroup/CallGroup";
 import MeetingScreen from "../../sceens/meeting/MeetingScreen";
+import MessengerScreen from "../../sceens/messenger/MessengerScreen";
 
 const Call = createStackNavigator();
 
@@ -41,6 +42,11 @@ export const CallStack = (props) => {
         name={Constants.CALL_GROUP}
         component={CallGroup}
         options={{ headerShown: false }}
+      />
+      <Call.Screen
+        name={Constants.MESSENGER_SCREEN}
+        component={MessengerScreen}
+        options={{ headerShown: true }}
       />
     </Call.Navigator>
   );

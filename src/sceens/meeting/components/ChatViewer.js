@@ -1,4 +1,5 @@
 import { useMeeting, usePubSub } from "@videosdk.live/react-native-sdk";
+import moment from "moment";
 import React, { useRef, useState } from "react";
 import {
   FlatList,
@@ -8,12 +9,11 @@ import {
   Text,
   View,
 } from "react-native";
+import Hyperlink from "react-native-hyperlink";
 import colors from "../../../styles/colors";
-import TextInputContainer from "./TextInputContainer";
 import { ROBOTO_FONTS } from "../../../styles/fonts";
 import { convertRFValue } from "../../../styles/spacing";
-import moment from "moment";
-import Hyperlink from "react-native-hyperlink";
+import TextInputContainer from "./TextInputContainer";
 function ChatViewer() {
   var topic = "CHAT";
   const flatlistRef = useRef();
@@ -50,8 +50,6 @@ function ChatViewer() {
    */
   const ItemMess = ({ item, index }) => {
     const { message, senderId, timestamp, senderName } = item;
-
-    console.log("item", JSON.stringify());
     const localSender = localParticipantId === senderId;
     const time = moment(timestamp).format("hh:mm a");
     return (

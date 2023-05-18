@@ -126,13 +126,9 @@ function CallGroupViewer() {
               {localScreenShareOn ? (
                 <LocalParticipantPresenter />
               ) : (
-                <LargeView
-                  participantId={participantIds[1]}
-                  // openStatsBottomSheet={openStatsBottomSheet}
-                />
+                <LargeView participantId={participantIds[1]} />
               )}
               <MiniView
-                // openStatsBottomSheet={openStatsBottomSheet}
                 participantId={
                   participantIds[localScreenShareOn || presenterId ? 1 : 0]
                 }

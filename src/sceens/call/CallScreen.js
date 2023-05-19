@@ -19,7 +19,7 @@ function CallScreen({ navigation, route }) {
   };
 
   const onMessegerScreeen = () => {
-    navigation.navigate(Constants.MESSENGER_SCREEN);
+    navigation.navigate(Constants.CREATE_ROOM);
   };
 
   return (

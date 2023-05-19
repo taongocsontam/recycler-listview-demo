@@ -6,3 +6,6 @@ export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
 export const ACCESS_TOKEN = "ACCESS_TOKEN";
 export const USER_STORE = "USER_STORE";
+export const GET_ROOM_CHAT = "GET_ROOM_CHAT";
+export const GET_ROOM_CHAT_SUSCCESS = "GET_ROOM_CHAT_SUSCCESS";
+export const GET_ROOM_CHAT_ERROR = "GET_ROOM_CHAT_ERROR";

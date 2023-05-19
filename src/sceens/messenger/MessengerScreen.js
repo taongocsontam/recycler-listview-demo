@@ -21,16 +21,18 @@ function MessengerScreen() {
   const listMessengerRef = useRef();
 
   useEffect(() => {
-    socketIO.on("connect", function () {
-      console.log("socket connect!");
-    });
+    // socketIO.on("connect", function () {
+    //   console.log("socket connect!");
+    // });
   }, []);
 
   useEffect(() => {
     socketIO.on("chat_messenger", (msg) => {
-      console.log("listMessenger:  ", JSON.stringify(listMessenger));
+      console.log("list:  ", JSON.stringify(listMessenger));
       console.log("msg:  ", JSON.stringify(msg));
-      setListMessenger([...listMessenger, msg]);
+      const newMess = [];
+      newMess.unshift(listMessenger.concat(msg));
+      setListMessenger(newMess);
     });
   }, []);
 
@@ -48,7 +50,7 @@ function MessengerScreen() {
 
   const ItemMessenger = useCallback(({ item, index }) => {
     return (
-      <View key={index}>
+      <View key={index} style={styles.viewItemMessenger}>
         <Text style={styles.textItemMess}></Text>
         <Hyperlink
           linkDefault={true}
@@ -68,6 +70,7 @@ function MessengerScreen() {
       <KeyboardAvoidingView style={styles.container}>
         {listMessenger && (
           <FlatList
+            inverted
             ref={listMessengerRef}
             showsVerticalScrollIndicator={false}
             data={listMessenger}
@@ -109,5 +112,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "white",
     fontFamily: ROBOTO_FONTS.RobotoMedium,
+  },
+  viewItemMessenger: {
+    backgroundColor: colors.primary[600],
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    marginVertical: 6,
+    borderRadius: 5,
+    marginHorizontal: 12,
   },
 });

@@ -11,6 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
+const chatRooms = []; // Danh sách các phòng chat.
+const generateID = () => Math.random().toString(36).substring(2, 10);
+
 /**
  * Return token for app client call video-sdk.
  */
@@ -31,7 +34,7 @@ app.get("/get-token", (req, res) => {
 });
 
 /**
- * When call localhost with port 3000 show index.html.
+ * Web when call localhost with port 3000 show index.html.
  */
 app.get("/", function (request, response) {
   request.sendFile(__dirname + "index.html");
@@ -41,11 +44,56 @@ app.get("/", function (request, response) {
  * Connect socket io with client.
  */
 io.on("connection", function (socket) {
-  socket.on("chat_messenger", function (msg) {
-    console.log("msg:  ", JSON.stringify(msg));
-    io.emit("chat_messenger", msg);
+  console.log(`${socket.id} user just connected!`);
+
+  // Create room chat.
+  socket.on("createRoom", (nameRoom) => {
+    socket.join(nameRoom);
+    chatRooms.unshift({
+      id: generateID(),
+      messengers: [],
+    });
+    socket.emit("roomLists", chatRooms);
+  });
+
+  // Client find room chat.
+  socket.on("findRoom", (roomId) => {
+    let result = chatRooms.filter((item, index) => roomId === item.id);
+    socket.emit("foundRoom", result[0].messengers);
+  });
+
+  // Chat new messenger.
+  socket.on("newMesssenger", (data) => {
+    const { roomId, messenga, user, timestamp } = data;
+    // Find room messenger
+    let resultRoom = chatRooms.filter((item, index) => item.id == roomId);
+    const newMessenga = {
+      id: generateID(),
+      text: messenga,
+      user,
+      time: `${timestamp.hour}:${timestamp.mins}`,
+    };
+    // Send messenger private.
+    socket.to(resultRoom[0].id).emit("", newMessenga);
+    resultRoom[0].messengers.push(newMessenga);
+
+    socket.emit("roomLists", chatRooms);
+    socket.emit("foundRoom", resultRoom[0].messengers);
+
+    //Socket disconnected
+    socket.on("disconnect", () => {
+      socket.disconnect();
+    });
   });
 });
+
+/**
+ * Api client get all room chat.
+ */
+app.get("/room_chat", (req, res) => {
+  res.json(chatRooms);
+});
+
 /**
  * Run port server.
  */

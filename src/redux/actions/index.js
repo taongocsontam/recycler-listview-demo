@@ -7,6 +7,9 @@ import {
   DECREMENT,
   ACCESS_TOKEN,
   USER_STORE,
+  GET_ROOM_CHAT,
+  GET_ROOM_CHAT_SUSCCESS,
+  GET_ROOM_CHAT_ERROR,
 } from "./types";
 
 export const updateToken = (token) => {
@@ -54,16 +57,23 @@ export const getImageError = (error) => {
   };
 };
 
-export const increaseAction = (step) => {
+export const getRoomchatAction = () => {
   return {
-    type: INCREMENT,
-    step: step,
+    type: GET_ROOM_CHAT,
+    payload: "",
   };
 };
 
-export const decreaseAction = (step) => {
+export const getRoomChatSuccess = (listRoom) => {
   return {
-    type: DECREMENT,
-    step: step,
+    type: GET_ROOM_CHAT_SUSCCESS,
+    payload: listRoom,
+  };
+};
+
+export const getRoomChatFail = (error) => {
+  return {
+    type: GET_ROOM_CHAT_ERROR,
+    payload: error,
   };
 };

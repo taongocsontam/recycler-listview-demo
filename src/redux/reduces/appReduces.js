@@ -39,7 +39,7 @@ const appReduces = (state = inittialState, actions) => {
     case GET_ROOM_CHAT:
       return { ...state };
     case GET_ROOM_CHAT_SUSCCESS:
-      return { ...state, listRoom: state.listRoom.push(actions.payload) };
+      return { ...state, listRoom: actions.payload };
     case GET_ROOM_CHAT_ERROR:
       return { ...state, messageError: actions.payload };
     default:

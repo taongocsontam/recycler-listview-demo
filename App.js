@@ -54,16 +54,21 @@ function App({ navigation }) {
     () => ({
       signIn: async (data) => {
         if (data) {
+          console.log('data:  ', JSON.stringify(data));
           await AsyncStorage.setItem(Constants.USER_TOKEN, data.token);
+          //data hanlder.
+          await AsyncStorage.setItem(Constants.USER_NAME, data.user);
           dispatch(updateToken(data.token));
         }
       },
       signUp: async (data) => {
         await AsyncStorage.setItem(Constants.USER_TOKEN, data.token);
+        await AsyncStorage.setItem(Constants.USER_NAME, data.user);
       },
       signOut: async () => {
         try {
           await AsyncStorage.removeItem(Constants.USER_TOKEN);
+          await AsyncStorage.removeItem(Constants.USER_NAME);
           dispatch(updateToken(null));
         } catch (e) {
           logger(e);

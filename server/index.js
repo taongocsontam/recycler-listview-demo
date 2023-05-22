@@ -29,7 +29,6 @@ app.get("/get-token", (req, res) => {
     roles: ["CRAWLER"],
   };
   const token = jwt.sign(payload, SECRET_KEY, options);
-  console.log("token :  ", JSON.stringify(token));
   res.json({ token });
 });
 
@@ -52,6 +51,7 @@ io.on("connection", function (socket) {
     chatRooms.unshift({
       id: generateID(),
       messengers: [],
+      room_name: nameRoom,
     });
     socket.emit("roomLists", chatRooms);
   });
@@ -74,7 +74,8 @@ io.on("connection", function (socket) {
       time: `${timestamp.hour}:${timestamp.mins}`,
     };
     // Send messenger private.
-    socket.to(resultRoom[0].id).emit("", newMessenga);
+    console.log('resultRoom[0]:  ', resultRoom);
+    socket.to(resultRoom[0].name).emit("roomMessage", newMessenga);
     resultRoom[0].messengers.push(newMessenga);
 
     socket.emit("roomLists", chatRooms);

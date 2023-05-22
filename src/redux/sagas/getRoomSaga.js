@@ -6,8 +6,6 @@ import { getRoomChatFail, getRoomChatSuccess } from "../actions";
 function* getRoomChatSaga() {
   try {
     const listRoomChat = yield call(getRoomChat);
-    console.log("listRoomChat:  ", JSON.stringify(listRoomChat));
-
     if (listRoomChat.status == 200) {
       yield put(getRoomChatSuccess(listRoomChat.data));
     }

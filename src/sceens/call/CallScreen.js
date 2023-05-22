@@ -3,8 +3,12 @@ import { Text, View, StyleSheet } from "react-native";
 import Button from "../../components/Button";
 import Constants from "../../constants";
 import Toast from "react-native-simple-toast";
+import { useDispatch } from "react-redux";
+import { getRoomchatAction, updateLoading } from "../../redux/actions";
 
 function CallScreen({ navigation, route }) {
+  const dispatch = useDispatch();
+
   const onCallGroup = () => {
     Toast.show("Coming Soon", Toast.SHORT);
   };
@@ -19,7 +23,10 @@ function CallScreen({ navigation, route }) {
   };
 
   const onMessegerScreeen = () => {
-    navigation.navigate(Constants.CREATE_ROOM);
+    try {
+      dispatch(getRoomchatAction());
+      navigation.navigate(Constants.CREATE_ROOM);
+    } catch (error) {}
   };
 
   return (

@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   FlatList,
   KeyboardAvoidingView,
@@ -7,37 +13,68 @@ import {
   Text,
   View,
 } from "react-native";
-import SocketIOClient from "socket.io-client";
-import { API_AUTH_URL } from "../../api/videosdk/api";
 import TextInputContainer from "../meeting/components/TextInputContainer";
 import { ROBOTO_FONTS } from "../../styles/fonts";
 import Hyperlink from "react-native-hyperlink";
 import colors from "../../styles/colors";
+import { socketIO } from "../../api/socket";
+import Constants from "../../constants";
+import Toast from "react-native-simple-toast";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { screenWidth } from "../../platforms";
 
-function MessengerScreen() {
-  const socketIO = SocketIOClient(API_AUTH_URL);
+function MessengerScreen({ navigation, route }) {
+  const { item, userSender } = route.params;
   const [messenger, setMessenger] = useState("");
-  const [listMessenger, setListMessenger] = useState([]);
   const listMessengerRef = useRef();
+  const [listRoomChat, setListRoomChat] = useState([]);
+  const [user, setUser] = useState("");
 
   useEffect(() => {
-    // socketIO.on("connect", function () {
-    //   console.log("socket connect!");
-    // });
+    getUsername();
   }, []);
+  const getUsername = async () => {
+    try {
+      const value = await AsyncStorage.getItem(Constants.USER_NAME);
+      if (value !== null) {
+        setUser(value);
+      }
+    } catch (e) {
+      Toast.show("Error while loading username!");
+    }
+  };
 
-  useEffect(() => {
-    socketIO.on("chat_messenger", (msg) => {
-      console.log("list:  ", JSON.stringify(listMessenger));
-      console.log("msg:  ", JSON.stringify(msg));
-      const newMess = [];
-      newMess.unshift(listMessenger.concat(msg));
-      setListMessenger(newMess);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: item.room_name,
     });
-  }, []);
+
+    socketIO.emit("findRoom", item.id);
+    socketIO.on("foundRoom", (roomChats) => setListRoomChat(roomChats));
+  }, [navigation]);
+
+  useEffect(() => {
+    socketIO.on("foundRoom", (roomChats) => setListRoomChat(roomChats));
+  }, [socketIO]);
 
   const sendMessage = () => {
-    socketIO.emit("chat_messenger", messenger);
+    const hour =
+      new Date().getHours() < 10
+        ? `0${new Date().getHours()}`
+        : `${new Date().getHours()}`;
+
+    const mins =
+      new Date().getMinutes() < 10
+        ? `0${new Date().getMinutes()}`
+        : `${new Date().getMinutes()}`;
+
+    socketIO.emit("newMesssenger", {
+      messenga: messenger,
+      roomId: item.id,
+      user: user,
+      timestamp: { hour, mins },
+    });
+
     setMessenger("");
     setTimeout(() => {
       scrollToBottom();
@@ -49,16 +86,27 @@ function MessengerScreen() {
   };
 
   const ItemMessenger = useCallback(({ item, index }) => {
+    const localSender = userSender === item.user;
     return (
-      <View key={index} style={styles.viewItemMessenger}>
-        <Text style={styles.textItemMess}></Text>
-        <Hyperlink
-          linkDefault={true}
-          onPress={(url) => Linking.openURL(url)}
-          linkStyle={{ color: "blue" }}
+      <View>
+        <View
+          key={index}
+          style={[
+            styles.viewItemMessenger,
+            {
+              alignSelf: localSender ? "flex-end" : null,
+            },
+          ]}
         >
-          <Text style={styles.textContentMess}>{item}</Text>
-        </Hyperlink>
+          <Hyperlink
+            linkDefault={true}
+            onPress={(url) => Linking.openURL(url)}
+            linkStyle={{ color: "blue" }}
+          >
+            <Text style={styles.textContentMess}>{item.text}</Text>
+            <Text style={styles.textTime}>{item.time}</Text>
+          </Hyperlink>
+        </View>
       </View>
     );
   }, []);
@@ -68,12 +116,11 @@ function MessengerScreen() {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView style={styles.container}>
-        {listMessenger && (
+        {listRoomChat && (
           <FlatList
-            inverted
             ref={listMessengerRef}
             showsVerticalScrollIndicator={false}
-            data={listMessenger}
+            data={listRoomChat}
             renderItem={({ item, index }) => (
               <ItemMessenger item={item} index={index} />
             )}
@@ -113,12 +160,19 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: ROBOTO_FONTS.RobotoMedium,
   },
+  textTime: {
+    fontSize: 8,
+    color: "white",
+    fontFamily: ROBOTO_FONTS.RobotoMedium,
+    alignSelf: "flex-end",
+  },
   viewItemMessenger: {
     backgroundColor: colors.primary[600],
-    paddingVertical: 5,
-    paddingHorizontal: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     marginVertical: 6,
     borderRadius: 5,
     marginHorizontal: 12,
+    maxWidth: screenWidth * 0.6,
   },
 });

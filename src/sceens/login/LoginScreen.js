@@ -37,7 +37,7 @@ export default function LoginScreen({ navigation }) {
     if (email || password) {
       const responseDemo = {
         token: "0.123456789",
-        user: "SonTN",
+        user: email,
       };
       navigateUserStack(responseDemo);
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Button from "../../components/Button";
 import Constants from "../../constants";
@@ -8,6 +8,10 @@ import { getRoomchatAction, updateLoading } from "../../redux/actions";
 
 function CallScreen({ navigation, route }) {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRoomchatAction());
+  }, []);
 
   const onCallGroup = () => {
     Toast.show("Coming Soon", Toast.SHORT);
@@ -23,10 +27,7 @@ function CallScreen({ navigation, route }) {
   };
 
   const onMessegerScreeen = () => {
-    try {
-      dispatch(getRoomchatAction());
-      navigation.navigate(Constants.CREATE_ROOM);
-    } catch (error) {}
+    navigation.navigate(Constants.CREATE_ROOM);
   };
 
   return (
@@ -41,7 +42,7 @@ function CallScreen({ navigation, route }) {
         <Text style={styles.textButton}>Live Streaming</Text>
       </Button>
       <Button onPress={onMessegerScreeen} style={styles.btn}>
-        <Text style={styles.textButton}>Messeger</Text>
+        <Text style={styles.textButton}>Create Room Chat Messeger</Text>
       </Button>
     </View>
   );

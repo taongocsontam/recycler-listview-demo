@@ -18,40 +18,37 @@ import { getRoomChatSuccess, getRoomchatAction } from "../../redux/actions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-simple-toast";
 
-
 function CreateRoom({ navigation, route }) {
   const dispatch = useDispatch();
-  const [roomName, setRoomName] = useState("");
-
-  const bottomSheetRef = useRef();
   const listRoom = useSelector((state) => state.appReduces.listRoom);
+  // console.log("listRoom:  ", JSON.stringify(listRoom));
+  const [roomName, setRoomName] = useState("");
   const [room, setRooms] = useState(listRoom);
   const [user, setUser] = useState("");
+  const bottomSheetRef = useRef();
 
   useEffect(() => {
     getUsername();
     socketIO.on("connect", function (socket) {
-      console.log('socket:   ', JSON.stringify(socket));
+      console.log("socket:   ", JSON.stringify(socket));
       dispatch(getRoomchatAction());
     });
   }, []);
 
   useEffect(() => {
-    socketIO.on("roomsLists", (rooms) => {
-      setRooms(rooms);
+    socketIO.on("roomLists", (rooms) => {
+      setRooms(listRoom);
     });
-  }, [socketIO]);
+    setRooms(listRoom);
+  }, [socketIO, listRoom]);
 
   const onCreateRoom = () => {
     if (roomName.trim()) {
       socketIO.emit("createRoom", roomName.trim());
+      dispatch(getRoomchatAction());
     }
     bottomSheetRef.current.close();
     setRoomName("");
-    socketIO.on("roomsLists", (rooms) => {
-      getRoomChatSuccess(rooms);
-      setRooms(rooms);
-    });
   };
 
   const onHandleCreateRoom = () => {
@@ -62,8 +59,8 @@ function CreateRoom({ navigation, route }) {
     navigation.setOptions({
       title: "Create room",
       headerRight: () => (
-        <TouchableOpacity onPress={onHandleCreateRoom}>
-          <Text>create</Text>
+        <TouchableOpacity onPress={onHandleCreateRoom} style={styles.btnAdd}>
+          <Text>Add Room</Text>
         </TouchableOpacity>
       ),
     });
@@ -155,7 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignContent: "center",
     justifyContent: "center",
-    marginHorizontal: 30,
+    marginHorizontal: 10,
   },
   viewBottomSheet: {
     justifyContent: "center",
@@ -205,5 +202,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: 80,
     marginBottom: 10,
+  },
+  btnAdd: {
+    padding: 5,
+    borderRadius: 5,
+    backgroundColor: "#ff6f00",
+    marginRight: 10
   },
 });

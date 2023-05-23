@@ -1,3 +1,5 @@
+import { ActionCable, Cable } from "@kesha-antonov/react-native-action-cable";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, {
   useCallback,
   useEffect,
@@ -13,18 +15,30 @@ import {
   Text,
   View,
 } from "react-native";
-import TextInputContainer from "../meeting/components/TextInputContainer";
-import { ROBOTO_FONTS } from "../../styles/fonts";
 import Hyperlink from "react-native-hyperlink";
-import colors from "../../styles/colors";
-import { socketIO } from "../../api/socket";
-import Constants from "../../constants";
 import Toast from "react-native-simple-toast";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { socketIO } from "../../api/socket";
+import { API_AUTH_URL } from "../../api/videosdk/api";
+import Constants from "../../constants";
 import { screenWidth } from "../../platforms";
+import colors from "../../styles/colors";
+import { ROBOTO_FONTS } from "../../styles/fonts";
+import TextInputContainer from "../meeting/components/TextInputContainer";
 
 function MessengerScreen({ navigation, route }) {
   const { item, userSender } = route.params;
+  console.log("item: ", JSON.stringify(item));
+  const actionCable = ActionCable.createConsumer(`ws://${API_AUTH_URL}/cable`);
+  const cable = new Cable({});
+  const channel = cable.setChannel(
+    `chat_${item.id}`,
+    actionCable.subscriptions.create({
+      channel: "",
+      
+      
+    })
+  );
+
   const [messenger, setMessenger] = useState("");
   const listMessengerRef = useRef();
   const [listRoomChat, setListRoomChat] = useState([]);
@@ -33,6 +47,7 @@ function MessengerScreen({ navigation, route }) {
   useEffect(() => {
     getUsername();
   }, []);
+
   const getUsername = async () => {
     try {
       const value = await AsyncStorage.getItem(Constants.USER_NAME);
@@ -57,7 +72,7 @@ function MessengerScreen({ navigation, route }) {
     socketIO.on("foundRoom", (roomChats) => setListRoomChat(roomChats));
   }, [socketIO]);
 
-  const sendMessage = () => {
+  const getTimeStamp = () => {
     const hour =
       new Date().getHours() < 10
         ? `0${new Date().getHours()}`
@@ -67,14 +82,18 @@ function MessengerScreen({ navigation, route }) {
       new Date().getMinutes() < 10
         ? `0${new Date().getMinutes()}`
         : `${new Date().getMinutes()}`;
+    return { hour, mins };
+  };
 
+  const sendMessage = () => {
     socketIO.emit("newMesssenger", {
       messenga: messenger,
       roomId: item.id,
       user: user,
-      timestamp: { hour, mins },
+      timestamp: getTimeStamp(),
     });
 
+    //  socketIO.on("foundRoom", (roomChats));
     setMessenger("");
     setTimeout(() => {
       scrollToBottom();

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Button from "../../components/Button";
 import Constants from "../../constants";
@@ -8,6 +8,12 @@ import { getRoomchatAction, updateLoading } from "../../redux/actions";
 
 function CallScreen({ navigation, route }) {
   const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: <Text> Social Medial</Text>,
+    });
+  }, [navigation]);
 
   useEffect(() => {
     dispatch(getRoomchatAction());

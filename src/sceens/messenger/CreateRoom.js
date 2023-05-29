@@ -14,7 +14,11 @@ import BottomSheet from "../../components/BottomSheet";
 import Button from "../../components/Button";
 import Constants from "../../constants";
 import { screenHeight } from "../../platforms";
-import { getRoomChatSuccess, getRoomchatAction } from "../../redux/actions";
+import {
+  getRoomChatSuccess,
+  getRoomchatAction,
+  postDeleteRoomAction,
+} from "../../redux/actions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-simple-toast";
 
@@ -26,20 +30,25 @@ function CreateRoom({ navigation, route }) {
   const [room, setRooms] = useState(listRoom);
   const [user, setUser] = useState("");
   const bottomSheetRef = useRef();
+  const isMounteRef = useRef(false);
 
   useEffect(() => {
     getUsername();
-    socketIO.on("connect", function (socket) {
-      console.log("socket:   ", JSON.stringify(socket));
-      dispatch(getRoomchatAction());
-    });
   }, []);
 
   useEffect(() => {
-    socketIO.on("roomLists", (rooms) => {
-      setRooms(listRoom);
-    });
-    setRooms(listRoom);
+    isMounteRef.current = true;
+    if (isMounteRef.current) {
+      socketIO.on("roomLists", (rooms) => {
+        if (isMounteRef.current == true) {
+          setRooms(rooms);
+        }
+      });
+    }
+
+    return () => {
+      isMounteRef.current = false;
+    };
   }, [socketIO, listRoom]);
 
   const onCreateRoom = () => {
@@ -68,15 +77,27 @@ function CreateRoom({ navigation, route }) {
 
   const ItemRooms = ({ item, index }) => {
     return (
-      <TouchableOpacity
-        key={item.id}
-        style={styles.itemRoomContainer}
-        onPress={() => {
-          onChatDetail(item);
-        }}
-      >
-        <Text>{item.room_name}</Text>
-      </TouchableOpacity>
+      <View style={styles.viewItemRooom}>
+        <TouchableOpacity
+          key={item.id}
+          style={styles.itemRoomContainer}
+          onPress={() => {
+            onChatDetail(item);
+          }}
+        >
+          <Text style={styles.titleRoom} numberOfLines={1}>
+            {item.room_name}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btnDemeteRoom}
+          onPress={() => {
+            onHandlerDeleteRoom(item);
+          }}
+        >
+          <Text>Delete</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -96,6 +117,10 @@ function CreateRoom({ navigation, route }) {
       item: item,
       userSender: user,
     });
+  };
+
+  const onHandlerDeleteRoom = (item) => {
+    dispatch(postDeleteRoomAction(item.id));
   };
 
   return (
@@ -195,18 +220,29 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   itemRoomContainer: {
-    flexDirection: "row",
+    paddingHorizontal: 15,
+    width: "80%",
+    height: "100%",
+    justifyContent: "center",
+  },
+  titleRoom: {
+    alignItems: "flex-start",
+    fontWeight: "bold",
+  },
+  btnAdd: {
+    padding: 5,
+    borderRadius: 5,
+    backgroundColor: "#ff6f00",
+    marginRight: 10,
+  },
+  viewItemRooom: {
     alignItems: "center",
     borderRadius: 5,
     paddingHorizontal: 15,
     backgroundColor: "#fff",
     height: 80,
     marginBottom: 10,
-  },
-  btnAdd: {
-    padding: 5,
-    borderRadius: 5,
-    backgroundColor: "#ff6f00",
-    marginRight: 10
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

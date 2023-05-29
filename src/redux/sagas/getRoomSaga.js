@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { GET_ROOM_CHAT } from "../actions/types";
 import { getRoomChat } from "../../api/socket";
 import { getRoomChatFail, getRoomChatSuccess } from "../actions";
@@ -16,7 +16,7 @@ function* getRoomChatSaga() {
 }
 
 function* getRoomSaga() {
-  yield takeEvery(GET_ROOM_CHAT, getRoomChatSaga);
+  yield takeLatest(GET_ROOM_CHAT, getRoomChatSaga);
 }
 
 export default getRoomSaga;

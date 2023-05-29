@@ -13,6 +13,7 @@ import {
   Linking,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import Hyperlink from "react-native-hyperlink";
@@ -24,28 +25,32 @@ import { screenWidth } from "../../platforms";
 import colors from "../../styles/colors";
 import { ROBOTO_FONTS } from "../../styles/fonts";
 import TextInputContainer from "../meeting/components/TextInputContainer";
+import { channel } from "redux-saga";
+import SocketIOClient from "socket.io-client";
 
 function MessengerScreen({ navigation, route }) {
   const { item, userSender } = route.params;
-  console.log("item: ", JSON.stringify(item));
+  // console.log('item:  ', JSON.stringify(item));
   const actionCable = ActionCable.createConsumer(`ws://${API_AUTH_URL}/cable`);
   const cable = new Cable({});
-  const channel = cable.setChannel(
-    `chat_${item.id}`,
-    actionCable.subscriptions.create({
-      channel: "",
-      
-      
-    })
-  );
-
   const [messenger, setMessenger] = useState("");
   const listMessengerRef = useRef();
   const [listRoomChat, setListRoomChat] = useState([]);
   const [user, setUser] = useState("");
+  const isMounteRef = useRef(false);
 
   useEffect(() => {
-    getUsername();
+    isMounteRef.current = true;
+    socketIO.emit("findRoom", item.id);
+    socketIO.on("foundRoom", (roomChats) => {
+      if (isMounteRef.current) {
+        getUsername();
+        setListRoomChat(roomChats);
+      }
+    });
+    return () => {
+      isMounteRef.current = false;
+    };
   }, []);
 
   const getUsername = async () => {
@@ -63,13 +68,16 @@ function MessengerScreen({ navigation, route }) {
     navigation.setOptions({
       title: item.room_name,
     });
-
-    socketIO.emit("findRoom", item.id);
-    socketIO.on("foundRoom", (roomChats) => setListRoomChat(roomChats));
   }, [navigation]);
 
   useEffect(() => {
-    socketIO.on("foundRoom", (roomChats) => setListRoomChat(roomChats));
+    isMounteRef.current = true;
+    socketIO.on("foundRoom", (roomChats) => {
+      if (isMounteRef.current) setListRoomChat(roomChats);
+    });
+    return () => {
+      isMounteRef.current = false;
+    };
   }, [socketIO]);
 
   const getTimeStamp = () => {
@@ -86,22 +94,23 @@ function MessengerScreen({ navigation, route }) {
   };
 
   const sendMessage = () => {
-    socketIO.emit("newMesssenger", {
-      messenga: messenger,
-      roomId: item.id,
-      user: user,
-      timestamp: getTimeStamp(),
-    });
-
-    //  socketIO.on("foundRoom", (roomChats));
-    setMessenger("");
-    setTimeout(() => {
+    if (messenger.trim()) {
+      socketIO.emit("newMesssenger", {
+        messenga: messenger.trim(),
+        roomId: item.id,
+        user: user,
+        timestamp: getTimeStamp(),
+      });
+      setTimeout(() => {
       scrollToBottom();
-    }, 100);
+      }, 100);
+    }
+    socketIO.on("foundRoom", (roomChats) => {});
+    setMessenger("");
   };
 
   const scrollToBottom = () => {
-    listMessengerRef.current.scrollToEnd({ animated: true });
+    listMessengerRef.current.scrollToIndex({ index: 0, animated: true });
   };
 
   const ItemMessenger = useCallback(({ item, index }) => {
@@ -137,6 +146,7 @@ function MessengerScreen({ navigation, route }) {
       <KeyboardAvoidingView style={styles.container}>
         {listRoomChat && (
           <FlatList
+            style={styles.viewFlatlist}
             ref={listMessengerRef}
             showsVerticalScrollIndicator={false}
             data={listRoomChat}
@@ -144,6 +154,7 @@ function MessengerScreen({ navigation, route }) {
               <ItemMessenger item={item} index={index} />
             )}
             keyExtractor={(__, index) => index}
+            inverted={true}
           />
         )}
         <View style={styles.viewTextInput}>
@@ -165,6 +176,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.primary[800],
+  },
+  viewFlatlist: {
+    flex: 1,
   },
   viewTextInput: {
     paddingHorizontal: 12,

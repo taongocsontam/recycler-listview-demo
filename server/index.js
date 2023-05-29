@@ -74,9 +74,9 @@ io.on("connection", function (socket) {
       time: `${timestamp.hour}:${timestamp.mins}`,
     };
     // Send messenger private.
-    console.log('resultRoom[0]:  ', resultRoom);
+    console.log("resultRoom[0]:  ", resultRoom);
     socket.to(resultRoom[0].name).emit("roomMessage", newMessenga);
-    resultRoom[0].messengers.push(newMessenga);
+    resultRoom[0].messengers.unshift(newMessenga);
 
     socket.emit("roomLists", chatRooms);
     socket.emit("foundRoom", resultRoom[0].messengers);
@@ -93,6 +93,16 @@ io.on("connection", function (socket) {
  */
 app.get("/room_chat", (req, res) => {
   res.json(chatRooms);
+});
+
+/**
+ * Api client delete room chat.
+ */
+app.post("/delete_room_chat", (req, res) => {
+  console.log('req: ', req.id);
+  const result = chatRooms.filter((room, index) => room.id == req.id);
+  console.log('result:  ', result); 
+
 });
 
 /**

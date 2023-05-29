@@ -22,7 +22,7 @@ function* getImageSaga(action) {
 }
 
 function* imageSaga() {
-  yield takeEvery(GET_IMAGE, getImageSaga);
+  yield takeLatest(GET_IMAGE, getImageSaga);
 }
 
 export default imageSaga;

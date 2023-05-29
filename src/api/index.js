@@ -27,7 +27,7 @@ export const postDataApi = (urlApi, bodyData = null, isAuth = false) =>
       : {
           Accept: "application/json",
         },
-    // data: bodyData,
+    data: bodyData,
   });
 
 export const postDataApiMultipart = (urlApi, bodyData = null, isAuth = false) =>

@@ -126,6 +126,10 @@ export default function OneToOneMeetingViewer() {
         recordingRef.current.stop();
       }
     }
+
+    return () => {
+      recordingRef.current = false;
+    };
   }, [recordingState]);
 
   const openStatsBottomSheet = ({ pId }) => {

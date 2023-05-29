@@ -10,6 +10,7 @@ import {
   GET_ROOM_CHAT,
   GET_ROOM_CHAT_SUSCCESS,
   GET_ROOM_CHAT_ERROR,
+  POST_DELETE_ROOM,
 } from "./types";
 
 export const updateToken = (token) => {
@@ -77,3 +78,16 @@ export const getRoomChatFail = (error) => {
     payload: error,
   };
 };
+
+export const postDeleteRoomAction = (id) => {
+  return {
+    type: POST_DELETE_ROOM,
+    payload: id
+  }
+}
+
+// export const postDeleteRoomSuccess = () => {
+//   return {
+
+//   }
+// }

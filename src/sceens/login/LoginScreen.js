@@ -19,10 +19,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../context";
 import { isIOS } from "../../platforms";
 import { hasNotch } from "react-native-device-info";
-import { KeyboardAccessoryView } from "react-native-keyboard-accessory";
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState("");
+  const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useContext(AuthContext);
   const navigateUserStack = (data) => {
@@ -32,12 +31,12 @@ export default function LoginScreen({ navigation }) {
       // remember: switchOn, remember password
     });
   };
-  const onLoginPressed = () => {
+  const onLoginPressed = async () => {
     Keyboard.dismiss();
-    if (email || password) {
+    if (username || password) {
       const responseDemo = {
         token: "0.123456789",
-        user: email,
+        user: username,
       };
       navigateUserStack(responseDemo);
     }
@@ -61,7 +60,7 @@ export default function LoginScreen({ navigation }) {
           <TextInput
             placeholder="Email"
             returnKeyType="next"
-            value={email}
+            value={username}
             onChangeText={(text) => setEmail(text)}
             keyboardType="email-address"
             style={styles.textInput}

@@ -1,6 +1,6 @@
 import SocketIOClient, { io } from "socket.io-client";
 import { API_AUTH_URL } from "../videosdk/api";
-import { getData, postDataApi } from "..";
+import { getData, postDataApi, postDataApiMultipart } from "..";
 import { API_GET_ALL_ROOM_CHAT, API_POST_DELETE_ROOM_CHAT } from "./api";
 
 export const socketIO = io.connect(API_AUTH_URL);
@@ -19,7 +19,7 @@ export const postDeleteRoom = async (id) => {
     id: id,
   };
   try {
-    const responses = await postDataApi(API_POST_DELETE_ROOM_CHAT, body, true);
-    console.log("delete:  ", JSON.stringify(responses));
+    const responses = await postDataApi(API_POST_DELETE_ROOM_CHAT, body, false);
+    return responses;
   } catch (error) {}
 };

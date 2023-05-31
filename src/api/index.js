@@ -15,8 +15,8 @@ export const getData = (urlApi, param = null, isAuth = false, token) =>
     params: param,
   });
 
-export const postDataApi = (urlApi, bodyData = null, isAuth = false) =>
-  axios({
+export const postDataApi = (urlApi, bodyData = null, isAuth = false) => {
+  return axios({
     method: "POST",
     url: urlApi,
     headers: isAuth
@@ -26,15 +26,18 @@ export const postDataApi = (urlApi, bodyData = null, isAuth = false) =>
         }
       : {
           Accept: "application/json",
+          "Content-Type": "application/json",
         },
     data: bodyData,
   });
+};
 
 export const postDataApiMultipart = (urlApi, bodyData = null, isAuth = false) =>
   axios({
     method: "POST",
     url: urlApi,
     headers: {
+      "Content-Type": "multipart/form-data",
       Accept: "application/json",
     },
     data: bodyData,

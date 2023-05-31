@@ -1,5 +1,4 @@
 import { ActionCable, Cable } from "@kesha-antonov/react-native-action-cable";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, {
   useCallback,
   useEffect,
@@ -13,20 +12,16 @@ import {
   Linking,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 import Hyperlink from "react-native-hyperlink";
-import Toast from "react-native-simple-toast";
+import { TypingAnimation } from "react-native-typing-animation";
 import { socketIO } from "../../api/socket";
 import { API_AUTH_URL } from "../../api/videosdk/api";
-import Constants from "../../constants";
 import { screenWidth } from "../../platforms";
 import colors from "../../styles/colors";
 import { ROBOTO_FONTS } from "../../styles/fonts";
 import TextInputContainer from "../meeting/components/TextInputContainer";
-import { channel } from "redux-saga";
-import SocketIOClient from "socket.io-client";
 
 function MessengerScreen({ navigation, route }) {
   const { item, userSender } = route.params;
@@ -36,33 +31,11 @@ function MessengerScreen({ navigation, route }) {
   const [messenger, setMessenger] = useState("");
   const listMessengerRef = useRef();
   const [listRoomChat, setListRoomChat] = useState([]);
-  const [user, setUser] = useState("");
+  const [isTyping, setTyping] = useState({
+    user: "",
+    typing: false,
+  });
   const isMounteRef = useRef(false);
-
-  useEffect(() => {
-    isMounteRef.current = true;
-    socketIO.emit("findRoom", item.id);
-    socketIO.on("foundRoom", (roomChats) => {
-      if (isMounteRef.current) {
-        getUsername();
-        setListRoomChat(roomChats);
-      }
-    });
-    return () => {
-      isMounteRef.current = false;
-    };
-  }, []);
-
-  const getUsername = async () => {
-    try {
-      const value = await AsyncStorage.getItem(Constants.USER_NAME);
-      if (value !== null) {
-        setUser(value);
-      }
-    } catch (e) {
-      Toast.show("Error while loading username!");
-    }
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -72,8 +45,38 @@ function MessengerScreen({ navigation, route }) {
 
   useEffect(() => {
     isMounteRef.current = true;
+    socketIO.emit("findRoom", item.id);
     socketIO.on("foundRoom", (roomChats) => {
-      if (isMounteRef.current) setListRoomChat(roomChats);
+      if (isMounteRef.current) {
+        setListRoomChat(roomChats);
+      }
+    });
+    return () => {
+      isMounteRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    isMounteRef.current = true;
+    socketIO.on("foundRoom", (roomChats) => {
+      if (isMounteRef.current) {
+        setListRoomChat(roomChats);
+      }
+    });
+
+    /**
+     * Check is typing messenger from client.
+     */
+    socketIO.on("userState", (data) => {
+      if (
+        isMounteRef.current &&
+        data.user != userSender &&
+        data.roomId == item.id
+      )
+        setTyping({
+          user: data.user,
+          typing: data.typing,
+        });
     });
     return () => {
       isMounteRef.current = false;
@@ -98,11 +101,16 @@ function MessengerScreen({ navigation, route }) {
       socketIO.emit("newMesssenger", {
         messenga: messenger.trim(),
         roomId: item.id,
-        user: user,
+        user: userSender,
         timestamp: getTimeStamp(),
       });
+      socketIO.emit("typing", {
+        user: userSender,
+        typing: false,
+        roomId: item.id,
+      });
       setTimeout(() => {
-      scrollToBottom();
+        scrollToBottom();
       }, 100);
     }
     socketIO.on("foundRoom", (roomChats) => {});
@@ -110,7 +118,8 @@ function MessengerScreen({ navigation, route }) {
   };
 
   const scrollToBottom = () => {
-    listMessengerRef.current.scrollToIndex({ index: 0, animated: true });
+    if (listRoomChat.length > 1)
+      listMessengerRef.current.scrollToIndex({ index: 0, animated: true });
   };
 
   const ItemMessenger = useCallback(({ item, index }) => {
@@ -157,10 +166,38 @@ function MessengerScreen({ navigation, route }) {
             inverted={true}
           />
         )}
-        <View style={styles.viewTextInput}>
+        {isTyping.typing && (
+          <View style={styles.viewTyping}>
+            <Text style={styles.textUseTyping}>{`${isTyping.user} `}</Text>
+            <TypingAnimation
+              dotColor="white"
+              dotMargin={5}
+              dotAmplitude={3}
+              dotSpeed={0.15}
+              dotRadius={2.5}
+              dotX={12}
+              dotY={6}
+            />
+          </View>
+        )}
+        <View
+          style={[
+            styles.viewTextInput,
+            {
+              marginTop: isTyping ? 20 : 0,
+            },
+          ]}
+        >
           <TextInputContainer
             message={messenger}
-            setMessage={setMessenger}
+            setMessage={(messeger) => {
+              socketIO.emit("typing", {
+                user: userSender,
+                typing: messeger.length > 0 ? true : false,
+                roomId: item.id,
+              });
+              setMessenger(messeger);
+            }}
             isSending={false}
             sendMessage={sendMessage}
           />
@@ -207,5 +244,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: 12,
     maxWidth: screenWidth * 0.6,
+  },
+  viewTyping: {
+    flexDirection: "row",
+    marginLeft: 15,
+  },
+  textUseTyping: {
+    fontSize: 10,
+    color: "white",
+    fontFamily: ROBOTO_FONTS.RobotoMedium,
   },
 });

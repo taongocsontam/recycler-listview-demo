@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   FlatList,
@@ -8,10 +9,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Toast from "react-native-simple-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { socketIO } from "../../api/socket";
 import BottomSheet from "../../components/BottomSheet";
 import Button from "../../components/Button";
+import DialogContainer from "../../components/DialogContainer";
 import Constants from "../../constants";
 import { screenHeight } from "../../platforms";
 import {
@@ -19,16 +22,15 @@ import {
   getRoomchatAction,
   postDeleteRoomAction,
 } from "../../redux/actions";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Toast from "react-native-simple-toast";
 
 function CreateRoom({ navigation, route }) {
   const dispatch = useDispatch();
   const listRoom = useSelector((state) => state.appReduces.listRoom);
   // console.log("listRoom:  ", JSON.stringify(listRoom));
   const [roomName, setRoomName] = useState("");
-  const [room, setRooms] = useState(listRoom);
   const [user, setUser] = useState("");
+  const [isShowDialog, setShowDialog] = useState(false);
+  const [roomId, setRoomId] = useState("");
   const bottomSheetRef = useRef();
   const isMounteRef = useRef(false);
 
@@ -38,13 +40,11 @@ function CreateRoom({ navigation, route }) {
 
   useEffect(() => {
     isMounteRef.current = true;
-    if (isMounteRef.current) {
-      socketIO.on("roomLists", (rooms) => {
-        if (isMounteRef.current == true) {
-          setRooms(rooms);
-        }
-      });
-    }
+    socketIO.on("roomLists", (rooms) => {
+      if (isMounteRef.current == true) {
+        getRoomChatSuccess(rooms);
+      }
+    });
 
     return () => {
       isMounteRef.current = false;
@@ -120,17 +120,18 @@ function CreateRoom({ navigation, route }) {
   };
 
   const onHandlerDeleteRoom = (item) => {
-    dispatch(postDeleteRoomAction(item.id));
+    setRoomId(item.id);
+    setShowDialog(true);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        {room.length > 0 ? (
+        {listRoom.length > 0 ? (
           <FlatList
             style={styles.viewFlatlist}
             showsVerticalScrollIndicator={false}
-            data={room}
+            data={listRoom}
             renderItem={({ item, index }) => (
               <ItemRooms item={item} index={index} />
             )}
@@ -166,6 +167,29 @@ function CreateRoom({ navigation, route }) {
           </Button>
         </View>
       </BottomSheet>
+      <DialogContainer
+        isShowDialog={isShowDialog}
+        onCloseDialog={() => {
+          setShowDialog(false);
+        }}
+        titleDialog={"Delete Room Chat"}
+        contentDialog={"Do you want delete room chat?"}
+        textLeft={"No"}
+        textRight={"Yes"}
+        onPressLeft={() => {
+          setShowDialog(false);
+        }}
+        onPressRight={() => {
+          // case 1: socket
+          // socketIO.emit("delete_room_chat", roomId);
+          // socketIO.on("roomLists", (rooms) => {
+          //   dispatch(getRoomChatSuccess(rooms));
+          // });
+          // case 2: call api
+          dispatch(postDeleteRoomAction(roomId));
+          setShowDialog(false);
+        }}
+      />
     </SafeAreaView>
   );
 }

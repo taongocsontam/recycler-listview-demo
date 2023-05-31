@@ -11,7 +11,18 @@ app.use(express.urlencoded({ extended: true }));
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-const chatRooms = []; // Danh sách các phòng chat.
+const chatRooms = [
+  {
+    id: "7dyf3s55",
+    messengers: [],
+    room_name: "Chat 2",
+  },
+  {
+    id: "7dyf3s60",
+    messengers: [],
+    room_name: "Chat 1",
+  },
+]; // Danh sách các phòng chat.
 const generateID = () => Math.random().toString(36).substring(2, 10);
 
 /**
@@ -62,6 +73,12 @@ io.on("connection", function (socket) {
     socket.emit("foundRoom", result[0].messengers);
   });
 
+  // Client delete room chat.
+  socket.on("delete_room_chat", (roomId) => {
+    removeObjectWithId(chatRooms, roomId);
+    socket.emit("roomLists", chatRooms);
+  });
+
   // Chat new messenger.
   socket.on("newMesssenger", (data) => {
     const { roomId, messenga, user, timestamp } = data;
@@ -74,16 +91,21 @@ io.on("connection", function (socket) {
       time: `${timestamp.hour}:${timestamp.mins}`,
     };
     // Send messenger private.
-    console.log("resultRoom[0]:  ", resultRoom);
-    socket.to(resultRoom[0].name).emit("roomMessage", newMessenga);
     resultRoom[0].messengers.unshift(newMessenga);
-
-    socket.emit("roomLists", chatRooms);
-    socket.emit("foundRoom", resultRoom[0].messengers);
+    io.sockets.emit("foundRoom", resultRoom[0].messengers);
+    // io.of(roomId).emit("foundRoom", resultRoom[0].messengers);
 
     //Socket disconnected
     socket.on("disconnect", () => {
       socket.disconnect();
+    });
+  });
+
+  socket.on("typing", (data) => {
+    io.sockets.emit("userState", {
+      user: data.user,
+      typing: data.typing,
+      roomId: data.roomId,
     });
   });
 });
@@ -96,14 +118,21 @@ app.get("/room_chat", (req, res) => {
 });
 
 /**
- * Api client delete room chat.
+ * Api client delete room chat. cooming soon
  */
 app.post("/delete_room_chat", (req, res) => {
-  console.log('req: ', req.id);
-  const result = chatRooms.filter((room, index) => room.id == req.id);
-  console.log('result:  ', result); 
-
+  removeObjectWithId(chatRooms, req.body.id);
+  console.log("chatRooms:  ", chatRooms);
+  res.json(chatRooms);
 });
+
+function removeObjectWithId(arr, id) {
+  const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
+  if (objWithIdIndex > -1) {
+    arr.splice(objWithIdIndex, 1);
+  }
+  return arr;
+}
 
 /**
  * Run port server.

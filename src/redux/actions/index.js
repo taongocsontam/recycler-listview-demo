@@ -85,9 +85,3 @@ export const postDeleteRoomAction = (id) => {
     payload: id
   }
 }
-
-// export const postDeleteRoomSuccess = () => {
-//   return {
-
-//   }
-// }

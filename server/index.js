@@ -2,6 +2,17 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const request = require("request");
+const createAdapter = require("@socket.io/redis-adapter").createAdapter;
+const redis = require("redis");
+const { createClient } = redis;
+require("dotenv").config();
+const {
+  userJoin,
+  getCurrentUser,
+  userLeaveChat,
+  getRoomUser,
+} = require("./utils/user");
+const { formatMessenger } = require("./utils/messenger");
 
 const app = express();
 const port = 3000;
@@ -11,18 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-const chatRooms = [
-  {
-    id: "7dyf3s55",
-    messengers: [],
-    room_name: "Chat 2",
-  },
-  {
-    id: "7dyf3s60",
-    messengers: [],
-    room_name: "Chat 1",
-  },
-]; // Danh sách các phòng chat.
+const chatRooms = []; // Danh sách các phòng chat.
+
+const botName = "ChatCord Bot";
+
 const generateID = () => Math.random().toString(36).substring(2, 10);
 
 /**
@@ -50,62 +53,107 @@ app.get("/", function (request, response) {
   request.sendFile(__dirname + "index.html");
 });
 
+// (async () => {
+//   pubClient = createClient({ url: "redis://127.0.0.1:6379" });
+//   await pubClient.connect();
+//   subClient = pubClient.duplicate();
+//   io.adapter(createAdapter(pubClient, subClient));
+// })();
 /**
  * Connect socket io with client.
  */
 io.on("connection", function (socket) {
-  console.log(`${socket.id} user just connected!`);
+  console.log(`${socket.id} is connected!`);
+  socket.on("joinRoom", ({ userName, room }) => {
+    const user = userJoin(socket.id, userName, room);
+    socket.join(user.room);
 
-  // Create room chat.
-  socket.on("createRoom", (nameRoom) => {
-    socket.join(nameRoom);
-    chatRooms.unshift({
-      id: generateID(),
-      messengers: [],
-      room_name: nameRoom,
+    socket.emit("messenger", formatMessenger(botName, "Webcome to Chatbot"));
+
+    // Notification when user connect to room.
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "messenger",
+        formatMessenger(botName, `${user.username} has joined the chat`)
+      );
+
+    // Send user and info room.
+    io.to(user.room).emit("roomUsers", {
+      room: user.room,
+      users: getRoomUser(user.room),
     });
-    socket.emit("roomLists", chatRooms);
-  });
 
-  // Client find room chat.
-  socket.on("findRoom", (roomId) => {
-    let result = chatRooms.filter((item, index) => roomId === item.id);
-    socket.emit("foundRoom", result[0].messengers);
-  });
-
-  // Client delete room chat.
-  socket.on("delete_room_chat", (roomId) => {
-    removeObjectWithId(chatRooms, roomId);
-    socket.emit("roomLists", chatRooms);
-  });
-
-  // Chat new messenger.
-  socket.on("newMesssenger", (data) => {
-    const { roomId, messenga, user, timestamp } = data;
-    // Find room messenger
-    let resultRoom = chatRooms.filter((item, index) => item.id == roomId);
-    const newMessenga = {
-      id: generateID(),
-      text: messenga,
-      user,
-      time: `${timestamp.hour}:${timestamp.mins}`,
-    };
-    // Send messenger private.
-    resultRoom[0].messengers.unshift(newMessenga);
-    io.sockets.emit("foundRoom", resultRoom[0].messengers);
-    // io.of(roomId).emit("foundRoom", resultRoom[0].messengers);
-
-    //Socket disconnected
-    socket.on("disconnect", () => {
-      socket.disconnect();
+    // Listen when for chat messenger.
+    socket.on("chatMessage", (msg) => {
+      const user = getCurrentUser(socket.id);
+      io.to(user.room).emit("messenger", formatMessenger(user.username, msg));
     });
+
+    //
+  });
+
+  // // Create room chat.
+  // socket.on("createRoom", (nameRoom) => {
+  //   socket.join(nameRoom);
+  //   chatRooms.unshift({
+  //     id: generateID(),
+  //     messengers: [],
+  //     room_name: nameRoom,
+  //   });
+  //   socket.emit("roomLists", chatRooms);
+  // });
+
+  // // Client find room chat.
+  // socket.on("findRoom", (roomId) => {
+  //   let result = chatRooms.filter((item, index) => roomId === item.id);
+  //   socket.emit("foundRoom", result[0].messengers);
+  // });
+
+  // // Client delete room chat.
+  // socket.on("delete_room_chat", (roomId) => {
+  //   removeObjectWithId(chatRooms, roomId);
+  //   socket.emit("roomLists", chatRooms);
+  // });
+
+  // // Chat new messenger.
+  // socket.on("newMesssenger", (data) => {
+  //   const { roomId, messenga, user, timestamp } = data;
+  //   // Find room messenger
+  //   let resultRoom = chatRooms.filter((item, index) => item.id == roomId);
+  //   const newMessenga = {
+  //     id: generateID(),
+  //     text: messenga,
+  //     user,
+  //     time: `${timestamp.hour}:${timestamp.mins}`,
+  //   };
+  //   // Send messenger private.
+  //   resultRoom[0].messengers.unshift(newMessenga);
+  //   // io.sockets.emit("foundRoom", resultRoom[0].messengers);
+  //   // io.of(roomId).emit("foundRoom", resultRoom[0].messengers);
+  // });
+  //Socket disconnected
+  socket.on("disconnect", () => {
+    const user = userLeaveChat(socket.id);
+    if (user) {
+      io.to(user.room).emit(
+        "message",
+        formatMessenger(botName, `${user.username} has left the chat`)
+      );
+
+      // Send users and room info
+      io.to(user.room).emit("roomUsers", {
+        room: user.room,
+        users: getRoomUser(user.room),
+      });
+    }
+    socket.disconnect();
   });
 
   socket.on("typing", (data) => {
     io.sockets.emit("userState", {
       user: data.user,
       typing: data.typing,
-      roomId: data.roomId,
     });
   });
 });

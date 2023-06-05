@@ -26,51 +26,30 @@ import {
 function CreateRoom({ navigation, route }) {
   const dispatch = useDispatch();
   const listRoom = useSelector((state) => state.appReduces.listRoom);
-  // console.log("listRoom:  ", JSON.stringify(listRoom));
+  const user = useSelector((state) => state.appReduces.userState);
   const [roomName, setRoomName] = useState("");
-  const [user, setUser] = useState("");
   const [isShowDialog, setShowDialog] = useState(false);
   const [roomId, setRoomId] = useState("");
+  const [type, setType] = useState();
   const bottomSheetRef = useRef();
   const isMounteRef = useRef(false);
 
-  useEffect(() => {
-    getUsername();
-  }, []);
-
-  useEffect(() => {
-    isMounteRef.current = true;
-    socketIO.on("roomLists", (rooms) => {
-      if (isMounteRef.current == true) {
-        getRoomChatSuccess(rooms);
-      }
+  const onHandleJoinRoom = () => {
+    socketIO.emit("joinRoom", { userName: user, room: roomName });
+    navigation.navigate(Constants.MESSENGER_SCREEN, {
+      userSender: user,
     });
-
-    return () => {
-      isMounteRef.current = false;
-    };
-  }, [socketIO, listRoom]);
-
-  const onCreateRoom = () => {
-    if (roomName.trim()) {
-      socketIO.emit("createRoom", roomName.trim());
-      dispatch(getRoomchatAction());
-    }
-    bottomSheetRef.current.close();
-    setRoomName("");
-  };
-
-  const onHandleCreateRoom = () => {
-    bottomSheetRef.current.show();
   };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Create room",
       headerRight: () => (
-        <TouchableOpacity onPress={onHandleCreateRoom} style={styles.btnAdd}>
-          <Text>Add Room</Text>
-        </TouchableOpacity>
+        <View style={styles.viewHeadler}>
+          <TouchableOpacity onPress={onHandleJoinRoom} style={styles.btnAdd}>
+            <Text>Join Room</Text>
+          </TouchableOpacity>
+        </View>
       ),
     });
   }, [navigation]);
@@ -99,29 +78,6 @@ function CreateRoom({ navigation, route }) {
         </TouchableOpacity>
       </View>
     );
-  };
-
-  const getUsername = async () => {
-    try {
-      const value = await AsyncStorage.getItem(Constants.USER_NAME);
-      if (value !== null) {
-        setUser(value);
-      }
-    } catch (e) {
-      Toast.show("Error while loading username!");
-    }
-  };
-
-  const onChatDetail = (item) => {
-    navigation.navigate(Constants.MESSENGER_SCREEN, {
-      item: item,
-      userSender: user,
-    });
-  };
-
-  const onHandlerDeleteRoom = (item) => {
-    setRoomId(item.id);
-    setShowDialog(true);
   };
 
   return (
@@ -154,7 +110,7 @@ function CreateRoom({ navigation, route }) {
       >
         <View style={styles.viewBottomSheet}>
           <TextInput
-            placeholder="Create room"
+            placeholder={type == "CREATE" ? "Create room" : "Join room"}
             returnKeyType="next"
             value={roomName}
             onChangeText={(text) => setRoomName(text)}
@@ -162,9 +118,9 @@ function CreateRoom({ navigation, route }) {
             style={styles.textInput}
             placeholderTextColor={"white"}
           />
-          <Button onPress={onCreateRoom} style={styles.btnCreateRoom}>
-            <Text>Create room</Text>
-          </Button>
+          {/* <Button onPress={onCreateRoom} style={styles.btnCreateRoom}>
+            <Text>{type == "CREATE" ? "Create room" : "Join room"}</Text>
+          </Button> */}
         </View>
       </BottomSheet>
       <DialogContainer
@@ -202,6 +158,9 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     marginHorizontal: 10,
+  },
+  viewHeadler: {
+    flexDirection: "row",
   },
   viewBottomSheet: {
     justifyContent: "center",

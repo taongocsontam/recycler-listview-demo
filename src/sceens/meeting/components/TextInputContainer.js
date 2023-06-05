@@ -5,12 +5,18 @@ import { Send } from "../../../assets/icons";
 import colors from "../../../styles/colors";
 import { ROBOTO_FONTS } from "../../../styles/fonts";
 
-function TextInputContainer({ sendMessage, setMessage, message }) {
+function TextInputContainer({
+  sendMessage,
+  setMessage,
+  message,
+  styleContainer,
+}) {
   const vertical_40 = useStandardHeight(40);
   const textInput = () => {
     return (
       <View
         style={{
+          ...styleContainer,
           height: vertical_40,
           marginBottom: 14,
           flexDirection: "row",

@@ -32,8 +32,7 @@ const appReduces = (state = inittialState, actions) => {
     case GET_IMAGE_ERROR:
       return { ...state, messageError: actions.payload };
     case USER_STORE:
-      state = { ...state, userState: actions.payload };
-      break;
+      return { ...state, userState: actions.payload };
     case ACCESS_TOKEN:
       return { ...state, token: actions.payload };
     case GET_ROOM_CHAT:

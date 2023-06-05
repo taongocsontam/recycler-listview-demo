@@ -24,8 +24,7 @@ import { ROBOTO_FONTS } from "../../styles/fonts";
 import TextInputContainer from "../meeting/components/TextInputContainer";
 
 function MessengerScreen({ navigation, route }) {
-  const { item, userSender } = route.params;
-  // console.log('item:  ', JSON.stringify(item));
+  const { userSender } = route.params;
   const actionCable = ActionCable.createConsumer(`ws://${API_AUTH_URL}/cable`);
   const cable = new Cable({});
   const [messenger, setMessenger] = useState("");
@@ -39,81 +38,49 @@ function MessengerScreen({ navigation, route }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: item.room_name,
+      title: "Chat",
     });
   }, [navigation]);
 
   useEffect(() => {
     isMounteRef.current = true;
-    socketIO.emit("findRoom", item.id);
-    socketIO.on("foundRoom", (roomChats) => {
-      if (isMounteRef.current) {
-        setListRoomChat(roomChats);
-      }
-    });
-    return () => {
-      isMounteRef.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    isMounteRef.current = true;
-    socketIO.on("foundRoom", (roomChats) => {
-      if (isMounteRef.current) {
-        setListRoomChat(roomChats);
-      }
-    });
-
-    /**
-     * Check is typing messenger from client.
-     */
-    socketIO.on("userState", (data) => {
-      if (
-        isMounteRef.current &&
-        data.user != userSender &&
-        data.roomId == item.id
-      )
-        setTyping({
-          user: data.user,
-          typing: data.typing,
-        });
-    });
-    return () => {
-      isMounteRef.current = false;
-    };
-  }, [socketIO]);
-
-  const getTimeStamp = () => {
-    const hour =
-      new Date().getHours() < 10
-        ? `0${new Date().getHours()}`
-        : `${new Date().getHours()}`;
-
-    const mins =
-      new Date().getMinutes() < 10
-        ? `0${new Date().getMinutes()}`
-        : `${new Date().getMinutes()}`;
-    return { hour, mins };
-  };
-
-  const sendMessage = () => {
-    if (messenger.trim()) {
-      socketIO.emit("newMesssenger", {
-        messenga: messenger.trim(),
-        roomId: item.id,
-        user: userSender,
-        timestamp: getTimeStamp(),
+    //Check is typing messenger from client.
+    if (isMounteRef.current) {
+      socketIO.on("userState", (data) => {
+        if (data.user != userSender)
+          setTyping({
+            user: data.user,
+            typing: data.typing,
+          });
       });
+      // Reciver messenger from server.
+      socketIO.on("messenger", (data) => {
+        var listNew = [...listRoomChat];
+        listNew = [...listRoomChat, data];
+        setListRoomChat(listNew);
+      });
+    }
+
+    return () => {
+      isMounteRef.current = false;
       socketIO.emit("typing", {
         user: userSender,
         typing: false,
-        roomId: item.id,
+      });
+    };
+  }, [socketIO]);
+
+  const sendMessage = () => {
+    if (messenger.trim()) {
+      socketIO.emit("chatMessage", messenger.trim());
+      socketIO.emit("typing", {
+        user: userSender,
+        typing: false,
       });
       setTimeout(() => {
         scrollToBottom();
       }, 100);
     }
-    socketIO.on("foundRoom", (roomChats) => {});
     setMessenger("");
   };
 
@@ -122,8 +89,8 @@ function MessengerScreen({ navigation, route }) {
       listMessengerRef.current.scrollToIndex({ index: 0, animated: true });
   };
 
-  const ItemMessenger = useCallback(({ item, index }) => {
-    const localSender = userSender === item.user;
+  const ItemMessenger = ({ item, index }) => {
+    const localSender = userSender === item.username;
     return (
       <View>
         <View
@@ -140,15 +107,13 @@ function MessengerScreen({ navigation, route }) {
             onPress={(url) => Linking.openURL(url)}
             linkStyle={{ color: "blue" }}
           >
-            <Text style={styles.textContentMess}>{item.text}</Text>
+            <Text style={styles.textContentMess}>{item.messenger}</Text>
             <Text style={styles.textTime}>{item.time}</Text>
           </Hyperlink>
         </View>
       </View>
     );
-  }, []);
-
-  const keyExtractor = useCallback((__, index) => `${index}`, []);
+  };
 
   return (
     <View style={styles.container}>
@@ -194,12 +159,14 @@ function MessengerScreen({ navigation, route }) {
               socketIO.emit("typing", {
                 user: userSender,
                 typing: messeger.length > 0 ? true : false,
-                roomId: item.id,
               });
               setMessenger(messeger);
             }}
             isSending={false}
             sendMessage={sendMessage}
+            styleContainer={{
+              backgroundColor: "red",
+            }}
           />
         </View>
       </KeyboardAvoidingView>

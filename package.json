@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@kesha-antonov/react-native-action-cable": "^1.1.4",
     "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-firebase/app": "^17.4.2",
@@ -43,6 +44,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-simple-toast": "^2.0.0",
     "react-native-svg": "^13.8.0",
+    "react-native-typing-animation": "^0.1.7",
     "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^5.2.1",
     "react-player": "^2.12.0",

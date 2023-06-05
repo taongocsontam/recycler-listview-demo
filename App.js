@@ -16,7 +16,7 @@ import { UserStack } from "./src/navigations/UserStack/UserStack";
 import { AuthorStack } from "./src/navigations/AuthorStack/AuthorStack";
 import { AuthContext } from "./src/context/index";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { updateToken } from "./src/redux/actions";
+import { updateToken, updateUser } from "./src/redux/actions";
 import firebase from "@react-native-firebase/app";
 
 LogBox.ignoreAllLogs(true);
@@ -54,11 +54,11 @@ function App({ navigation }) {
     () => ({
       signIn: async (data) => {
         if (data) {
-          console.log('data:  ', JSON.stringify(data));
           await AsyncStorage.setItem(Constants.USER_TOKEN, data.token);
           //data hanlder.
           await AsyncStorage.setItem(Constants.USER_NAME, data.user);
           dispatch(updateToken(data.token));
+          dispatch(updateUser(data.user));
         }
       },
       signUp: async (data) => {
@@ -82,6 +82,9 @@ function App({ navigation }) {
     const getAccessToken = async () => {
       const accessToken = await AsyncStorage.getItem(Constants.USER_TOKEN);
       dispatch(updateToken(accessToken));
+      const user =  await AsyncStorage.getItem(Constants.USER_NAME);
+      dispatch(updateUser(user));
+
     };
     getAccessToken();
   }, []);
